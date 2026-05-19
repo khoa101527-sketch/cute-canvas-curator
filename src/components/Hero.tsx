@@ -1,19 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { HERO_STATS } from "@/data";
 import poster1 from "@/assets/posters/1shop.png";
 import poster2 from "@/assets/posters/vietcare.png";
 import poster3 from "@/assets/posters/dealerpro.png";
 import poster4 from "@/assets/posters/aicamera.png";
 import poster5 from "@/assets/posters/ailoyalty.png";
+import mPoster1 from "@/assets/posters/mobile/1shop.png";
+import mPoster2 from "@/assets/posters/mobile/vietcare.png";
+import mPoster3 from "@/assets/posters/mobile/dealerpro.png";
+import mPoster4 from "@/assets/posters/mobile/aicamera.png";
+import mPoster5 from "@/assets/posters/mobile/ailoyalty.png";
 
 const POSTERS = [
-  { src: poster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
-  { src: poster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
-  { src: poster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
-  { src: poster4, alt: "AI Camera - Giải pháp camera AI" },
-  { src: poster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
+  { src: poster1, mobileSrc: mPoster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
+  { src: poster2, mobileSrc: mPoster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
+  { src: poster3, mobileSrc: mPoster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
+  { src: poster4, mobileSrc: mPoster4, alt: "AI Camera - Giải pháp camera AI" },
+  { src: poster5, mobileSrc: mPoster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
 ];
+
 
 const AUTOPLAY_MS = 5000;
 
