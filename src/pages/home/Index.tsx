@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import AboutUs from "@/components/AboutUs";
 import Philosophy from "@/components/Philosophy";
 import Showcase from "@/components/Showcase";
 import Products from "@/components/Products";
 import Process from "@/components/Process";
-import Partners from "@/components/Partners";
+import TechPartners from "@/components/TechPartners";
+import Technologies from "@/components/Technologies";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -12,11 +14,13 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <AboutUs />
       <Philosophy />
       <Showcase />
       <Products />
       <Process />
-      <Partners />
+      <TechPartners />
+      <Technologies />
       <Footer />
     </div>
   );

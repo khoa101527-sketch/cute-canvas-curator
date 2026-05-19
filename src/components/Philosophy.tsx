@@ -16,13 +16,6 @@ export default function Philosophy() {
       <div className="relative max-w-[1280px] mx-auto">
         {/* Header — wide single-row title + description below */}
         <div className="text-left">
-          <span className="inline-flex items-center gap-2 text-[12px] tracking-[0.22em] uppercase font-semibold text-slate-500">
-            <span
-              className="w-6 h-[2px] rounded-full"
-              style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }}
-            />
-            Về chúng tôi
-          </span>
           <h2
             className="mt-4 font-bold tracking-[-0.025em] leading-[1.08] text-slate-900 whitespace-normal lg:whitespace-nowrap"
             style={{ fontSize: "clamp(34px,4.6vw,62px)" }}

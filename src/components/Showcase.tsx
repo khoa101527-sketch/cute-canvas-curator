@@ -15,13 +15,6 @@ export default function Showcase() {
       />
 
       <div className="relative max-w-[1280px] mx-auto">
-        <div className="text-center max-w-[680px] mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 text-[12px] tracking-[0.22em] uppercase font-semibold text-slate-500">
-            <span className="w-6 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
-            {SHOWCASE_FEATURE.eyebrow}
-            <span className="w-6 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1B8FD2,#1040A6)" }} />
-          </span>
-        </div>
 
         {/* Showcase grid: featured big card (left) + 4 small (right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
