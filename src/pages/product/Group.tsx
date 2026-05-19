@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   PRODUCTS_BY_GROUP,
   PRODUCT_GROUP_META,
+  getProductLogo,
   type ProductGroupKey,
 } from "@/data/products";
 import Header from "@/components/Header";
@@ -128,27 +129,16 @@ export default function ProductGroup() {
                 <button
                   key={p.slug}
                   onClick={() => scrollToProduct(p.slug)}
-                  className="group flex flex-col items-center text-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_18px_40px_-18px_rgba(16,64,166,0.28)]"
+                  aria-label={p.name}
+                  className="group flex items-center justify-center p-4 h-[104px] rounded-2xl bg-white border border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_18px_40px_-18px_rgba(16,64,166,0.28)]"
                 >
-                  <span
-                    className="w-20 h-12 rounded-xl grid place-items-center bg-white border border-slate-100 shrink-0 px-2 transition-transform duration-300 group-hover:scale-105"
-                    style={{
-                      boxShadow: "0 6px 14px -8px rgba(16,64,166,0.25)",
-                    }}
-                  >
-                    <img
-                      src={`/images/products/${p.slug}.png`}
-                      alt={p.name}
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                    />
-                  </span>
-                  <span
-                    className="text-[13px] font-semibold leading-[1.25]"
-                    style={{ color: "#0b1736" }}
-                  >
-                    {p.name}
-                  </span>
+                  <img
+                    src={getProductLogo(p.slug)}
+                    alt={p.name}
+                    loading="lazy"
+                    className="max-w-[80%] max-h-[68px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    style={{ imageRendering: "auto" }}
+                  />
                 </button>
               );
             })}
@@ -271,9 +261,9 @@ export default function ProductGroup() {
                     {/* logo */}
                     <div className="relative flex items-center justify-center px-8 w-full">
                       <img
-                        src={`/images/products/${p.slug}.png`}
+                        src={getProductLogo(p.slug)}
                         alt={p.name}
-                        className="object-contain w-[78%] max-w-[420px] max-h-[210px]"
+                        className="object-contain w-auto h-auto max-w-[78%] max-h-[200px]"
                         style={{
                           filter:
                             "drop-shadow(0 18px 30px rgba(0,0,0,0.45)) drop-shadow(0 0 18px rgba(255,255,255,0.08))",
