@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles, Target, Users, TrendingUp, Building2, Zap, BarChart3, Calendar, MessageCircle, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Calendar, MessageCircle } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from "@/data/products";
 import Header from "@/components/Header";
