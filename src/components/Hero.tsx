@@ -281,8 +281,9 @@ export default function Hero() {
               <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-
+        </div>
       </div>
+
 
       {/* Fade to white */}
       <div
