@@ -193,37 +193,27 @@ export default function Hero() {
               </>
             );
 
-            if (isCenter) {
-              return (
-                <Link
-                  key={i}
-                  to={`/product/${p.slug}`}
-                  aria-label={p.alt}
-                  onClick={(e) => {
-                    if (dragMoved.current) {
-                      e.preventDefault();
-                      dragMoved.current = false;
-                    }
-                  }}
-                  className="absolute top-1/2 left-1/2 cursor-pointer block"
-                  style={commonStyle}
-                >
-                  {inner}
-                </Link>
-              );
-            }
-
             return (
-              <button
-                key={i}
-                type="button"
+              <Link
+                key={p.slug}
+                to={`/product/${p.slug}`}
                 aria-label={p.alt}
-                onClick={() => jumpTo(i)}
-                className="absolute top-1/2 left-1/2 cursor-pointer"
+                onClick={(e) => {
+                  if (dragMoved.current) {
+                    e.preventDefault();
+                    dragMoved.current = false;
+                    return;
+                  }
+                  if (!isCenter) {
+                    e.preventDefault();
+                    jumpTo(i);
+                  }
+                }}
+                className="absolute top-1/2 left-1/2 cursor-pointer block"
                 style={commonStyle}
               >
                 {inner}
-              </button>
+              </Link>
             );
           })}
 
