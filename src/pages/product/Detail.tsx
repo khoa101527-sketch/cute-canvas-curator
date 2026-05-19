@@ -4,6 +4,20 @@ import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+import banner1shop from "@/assets/posters/1shop.png";
+import bannerVietcare from "@/assets/posters/vietcare.png";
+import bannerDealerpro from "@/assets/posters/dealerpro.png";
+import bannerAicamera from "@/assets/posters/aicamera.png";
+import bannerAiloyalty from "@/assets/posters/ailoyalty.png";
+
+const PRODUCT_BANNERS: Record<string, string> = {
+  "1shop": banner1shop,
+  vietcare: bannerVietcare,
+  "dealer-pro": bannerDealerpro,
+  aicamera: bannerAicamera,
+  ailoyalty: bannerAiloyalty,
+};
+
 
 
 export default function ProductDetail() {
