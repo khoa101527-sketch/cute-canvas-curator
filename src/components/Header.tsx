@@ -126,10 +126,11 @@ export default function Header() {
         className="relative flex items-center shrink-0"
       >
         <img
-          src="/images/aipower-logo.svg"
+          src={isDark ? "/images/aipower-logo-dark.svg" : "/images/aipower-logo.svg"}
           alt="AIPOWER"
           className="relative h-14 md:h-[68px] w-auto -my-3"
         />
+
       </a>
 
       {/* Nav */}
