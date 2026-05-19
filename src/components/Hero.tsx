@@ -217,12 +217,13 @@ export default function Hero() {
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(100deg,#5ec0ff 0%,#1B8FD2 45%,#ffffff 100%)",
+                  "linear-gradient(100deg,#7cc6ff 0%,#1B8FD2 40%,#1040A6 100%)",
               }}
             >
               AI Power
             </span>{" "}
-            your work.
+            <span className="text-white">your work</span>
+
           </h1>
           <p className="mt-5 text-[16px] md:text-[17px] leading-[1.65] text-white/70 mx-auto max-w-[680px]">
             Hệ sinh thái AI giúp doanh nghiệp tự động hoá vận hành, quản trị thông minh
