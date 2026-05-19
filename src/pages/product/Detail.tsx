@@ -34,7 +34,6 @@ export default function ProductDetail() {
     );
   }
 
-  const Icon = product.icon;
   const groupMeta = PRODUCT_GROUP_META[product.group];
   const related = PRODUCTS.filter(
     (p) => p.group === product.group && p.slug !== product.slug,
