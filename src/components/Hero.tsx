@@ -248,17 +248,22 @@ export default function Hero() {
             {HERO_STATS.map((s) => (
               <div
                 key={s.lbl}
-                className="px-4 py-2.5 rounded-2xl bg-white/[0.05] border border-white/[0.11] backdrop-blur-md min-w-[120px]"
+                className="px-5 py-3 rounded-2xl bg-white/[0.08] border border-white/[0.18] backdrop-blur-md min-w-[130px]"
+                style={{
+                  boxShadow:
+                    "0 8px 24px -12px rgba(16,64,166,0.45), inset 0 1px 0 rgba(255,255,255,0.12)",
+                }}
               >
                 <div
-                  className="font-bold text-[20px] leading-none bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(90deg,#9bd6ff,#5ec0ff)" }}
+                  className="font-bold text-[22px] leading-none bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(90deg,#ffffff,#bfe2ff)" }}
                 >
                   {s.num}
                 </div>
-                <div className="mt-1 text-[11.5px] font-medium text-white/80">{s.lbl}</div>
+                <div className="mt-1.5 text-[12px] font-medium text-white">{s.lbl}</div>
               </div>
             ))}
+
           </div>
         </div>
       </div>
