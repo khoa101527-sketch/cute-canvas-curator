@@ -136,9 +136,9 @@ export default function Header() {
         />
       </a>
 
-      {/* Nav */}
+      {/* Nav — absolutely centered so logo stays left and nav stays visually centered */}
       <nav
-        className="hidden md:flex items-center gap-12 text-[14.5px] font-medium"
+        className="hidden md:flex items-center gap-12 text-[14.5px] font-medium absolute left-1/2 -translate-x-1/2"
         style={{
           color: textColor,
           transition: "color 300ms ease",
