@@ -17,6 +17,8 @@ import CareersPage from "./pages/careers/Index";
 import NewsPage from "./pages/news/Index";
 import IndustriesPage from "./pages/industries/Index";
 import CaseStudiesPage from "./pages/case-studies/Index";
+import CaseStudyDetail from "./pages/case-studies/Detail";
+import NewsDetail from "./pages/news/Detail";
 
 const queryClient = new QueryClient();
 
@@ -44,8 +46,10 @@ const App = () => (
           <Route path="/about/danang" element={<AboutDanang />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
           <Route path="/industries" element={<IndustriesPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="/products/:group" element={<ProductGroup />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
