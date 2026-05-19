@@ -28,6 +28,7 @@ export default function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [tick, setTick] = useState(0);
   const n = POSTERS.length;
 
   useEffect(() => {
@@ -39,15 +40,19 @@ export default function Hero() {
 
   const go = useCallback((dir: 1 | -1) => {
     setActive((p) => (p + dir + n) % n);
+    setTick((t) => t + 1);
   }, [n]);
 
-  const jumpTo = useCallback((i: number) => setActive(((i % n) + n) % n), [n]);
+  const jumpTo = useCallback((i: number) => {
+    setActive(((i % n) + n) % n);
+    setTick((t) => t + 1);
+  }, [n]);
 
   useEffect(() => {
     if (paused) return;
     const t = setInterval(() => setActive((p) => (p + 1) % n), AUTOPLAY_MS);
     return () => clearInterval(t);
-  }, [paused, n]);
+  }, [paused, n, tick]);
 
   // Drag
   const dragStart = useRef<number | null>(null);
