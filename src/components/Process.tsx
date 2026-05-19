@@ -23,12 +23,6 @@ export default function Process() {
 
       <div className="max-w-[1280px] mx-auto relative">
         <div className="text-center max-w-[760px] mx-auto">
-          <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold mx-auto"
-            style={{ color: "#1040A6" }}>
-            <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-            Quy trình sản xuất AI-Driven
-            <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#1040A6]" />
-          </span>
           <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-foreground"
             style={{ fontSize: "clamp(34px,4vw,52px)" }}>
             Kỹ sư xuất sắc{" "}
