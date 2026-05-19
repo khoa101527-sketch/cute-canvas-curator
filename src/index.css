@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - Futuristic Enterprise Aesthetic: This design system embodies a premium, tech-forward visual language specifically crafted for AIPOWER's corporate identity. The philosophy centers on "Intelligent Luminosity" — where light, glow, and particle effects symbolize AI's transformative power.
+   - Visual Style: Advanced Glassmorphism 2.0 with Cybernetic Physicality. The hero section features deep space navy (#05070f) with electric blue (#2f7cff), vivid purple (#7a5cff), and cyan (#56e3ff) glows creating an immersive neural network atmosphere. Floating glass cards with backdrop-blur effects provide depth while maintaining readability. Rim-light effects on interactive elements simulate holographic interfaces.
+   - Rationale: AIPOWER serves enterprise clients (SCSK, SHIMIZU, HITACHI) requiring trust and sophistication, while showcasing cutting-edge AI innovation. The dark hero transitions to clean white sections, balancing futuristic drama with corporate professionalism.
+
+2. TYPOGRAPHY:
+   - Sans: Inter was selected for its exceptional readability at all sizes, geometric precision, and modern tech aesthetic. Its wide range of weights (400-800) supports hierarchical clarity from body text to bold hero headlines. Inter's neutral yet contemporary character aligns with enterprise credibility while feeling forward-thinking.
+   - Mono: JetBrains Mono serves technical content, metrics displays ("x10 Performance", "99.8% Accuracy"), and code snippets in product documentation. Its clear letterforms and excellent screen rendering ensure data legibility in dashboard-style stat presentations.
+
+3. COLOR SYSTEM:
+   - Brand Primary: Electric Blue (H: 230°) represents intelligence, trust, and technological advancement. This hue anchors the entire system, mapping to --primary for CTAs and --ring for focus states.
+   - Secondary Accent: Vivid Purple (H: 260°) adds premium sophistication and innovation energy, used for --accent on secondary actions and hover states.
+   - Tertiary Highlight: Cyan (H: 190°) provides high-contrast glow effects, particle systems, and success states, creating the signature "neural network" aesthetic.
+   - Semantic Colors: Success (H: 150° green) for metrics like "100% cashless", Warning (H: 45° amber) for alerts, Destructive (H: 10° red-orange) for critical actions. All calibrated for WCAG AA contrast on both dark hero and white content sections.
+   - Dark Mode Strategy: Hero section uses ultra-deep navy (L: 0.08) with high-chroma accents (C: 0.25-0.35) for dramatic glow effects. Light mode sections use near-white (L: 0.98) with reduced chroma (C: 0.05-0.15) for professional clarity.
+
+4. USAGE GUIDE:
+   - Layout Architecture: Full-width hero section (100vw) with centered 1280px max-width container for content sections. Hero uses asymmetric grid (text left, AI face visual right) inspired by NFT marketplace reference.
+   - Glassmorphism Implementation: Apply backdrop-blur-xl (24px) to floating cards with background: oklch(0.15 0.02 230 / 0.6) and 1px border using --border with 0.2 opacity. Add subtle box-shadow with cyan glow for depth.
+   - Particle & Glow Effects: Use CSS radial-gradients for ambient glows around the AI face. Implement SVG particle systems with cyan/blue dots (2-4px) at 0.3-0.6 opacity. Animate with subtle float/pulse keyframes (3-5s duration).
+   - Rim-Light Technique: Add inset box-shadow: inset 0 1px 0 oklch(0.9 0.1 190 / 0.15) to top edges of cards and buttons, simulating light reflection on glass surfaces.
+   - Interactive States: Buttons use gradient backgrounds (primary to accent) with scale(1.02) on hover. Ring focus states use 3px --ring with 0.5 opacity offset. Transitions: 200ms cubic-bezier(0.4, 0, 0.2, 1).
+   - Section Rhythm: Dark hero (100vh) → White philosophy cards (py-24) → Light gray product showcase (bg-muted, py-32) → White case studies (py-24) → Dark footer. Maintain 80-120px vertical spacing between major sections.
+   - Typography Scale: Hero headline 4.5rem/1.1 (font-weight: 800), Section titles 3rem/1.2 (700), Body 1rem/1.6 (400), Captions 0.875rem/1.5 (500). Use letter-spacing: -0.02em for large headings.
+   - Accessibility: Ensure all text on dark hero meets WCAG AA (4.5:1 for body, 3:1 for large text). Provide focus-visible states with --ring. Test glassmorphism overlays for sufficient contrast.
+   - Vietnamese Language: Inter's extensive glyph support handles Vietnamese diacritics perfectly. Increase line-height by 0.1 for Vietnamese body text to accommodate accent marks.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: JetBrains Mono, 'Courier New', Courier, monospace;
+  
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.98 0.005 230);
+  --foreground: oklch(0.15 0.02 230);
+  --card: oklch(0.99 0.003 230);
+  --card-foreground: oklch(0.15 0.02 230);
+  --popover: oklch(0.99 0.003 230);
+  --popover-foreground: oklch(0.15 0.02 230);
+  --primary: oklch(0.55 0.22 230);
+  --primary-foreground: oklch(0.98 0.005 230);
+  --brand-green: oklch(0.62 0.2 150);
+  --brand-blue: oklch(0.52 0.22 240);
+  --brand-blue-light: oklch(0.62 0.2 220);
+  --brand-cyan: oklch(0.72 0.18 195);
+  --secondary: oklch(0.95 0.01 230);
+  --secondary-foreground: oklch(0.2 0.03 230);
+  --muted: oklch(0.96 0.008 230);
+  --muted-foreground: oklch(0.48 0.02 230);
+  --accent: oklch(0.58 0.2 260);
+  --accent-foreground: oklch(0.98 0.005 230);
+  --destructive: oklch(0.58 0.22 15);
+  --destructive-foreground: oklch(0.98 0.005 230);
+  --border: oklch(0.88 0.01 230);
+  --input: oklch(0.88 0.01 230);
+  --ring: oklch(0.55 0.22 230);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.55 0.22 230);
+  --chart-2: oklch(0.58 0.2 260);
+  --chart-3: oklch(0.62 0.24 190);
+  --chart-4: oklch(0.6 0.18 150);
+  --chart-5: oklch(0.58 0.22 15);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.99 0.003 230);
+  --sidebar-foreground: oklch(0.15 0.02 230);
+  --sidebar-primary: oklch(0.55 0.22 230);
+  --sidebar-primary-foreground: oklch(0.98 0.005 230);
+  --sidebar-accent: oklch(0.95 0.01 230);
+  --sidebar-accent-foreground: oklch(0.2 0.03 230);
+  --sidebar-border: oklch(0.88 0.01 230);
+  --sidebar-ring: oklch(0.55 0.22 230);
+}
+
+.dark {
+  --background: oklch(0.08 0.03 230);
+  --foreground: oklch(0.95 0.01 230);
+  --card: oklch(0.12 0.04 230);
+  --card-foreground: oklch(0.95 0.01 230);
+  --popover: oklch(0.1 0.035 230);
+  --popover-foreground: oklch(0.95 0.01 230);
+  --primary: oklch(0.62 0.28 230);
+  --primary-foreground: oklch(0.08 0.03 230);
+  --secondary: oklch(0.18 0.05 230);
+  --secondary-foreground: oklch(0.95 0.01 230);
+  --muted: oklch(0.15 0.04 230);
+  --muted-foreground: oklch(0.65 0.02 230);
+  --accent: oklch(0.65 0.26 260);
+  --accent-foreground: oklch(0.08 0.03 230);
+  --destructive: oklch(0.62 0.28 15);
+  --destructive-foreground: oklch(0.95 0.01 230);
+  --border: oklch(0.22 0.05 230);
+  --input: oklch(0.22 0.05 230);
+  --ring: oklch(0.68 0.3 190);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.62 0.28 230);
+  --chart-2: oklch(0.65 0.26 260);
+  --chart-3: oklch(0.68 0.3 190);
+  --chart-4: oklch(0.65 0.24 150);
+  --chart-5: oklch(0.62 0.28 15);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.1 0.035 230);
+  --sidebar-foreground: oklch(0.95 0.01 230);
+  --sidebar-primary: oklch(0.62 0.28 230);
+  --sidebar-primary-foreground: oklch(0.08 0.03 230);
+  --sidebar-accent: oklch(0.18 0.05 230);
+  --sidebar-accent-foreground: oklch(0.95 0.01 230);
+  --sidebar-border: oklch(0.22 0.05 230);
+  --sidebar-ring: oklch(0.68 0.3 190);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Brand Colors */
+  --color-brand-green: var(--brand-green);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-light: var(--brand-blue-light);
+  --color-brand-cyan: var(--brand-cyan);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
+
+@keyframes twinkle {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+@keyframes pulseGlow {
+  from { transform: scale(0.95); opacity: 0.85; }
+  to { transform: scale(1.05); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
