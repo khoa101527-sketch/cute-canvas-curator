@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles, Target, Users, TrendingUp } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META } from "@/data/products";
+import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from "@/data/products";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -153,13 +153,17 @@ export default function ProductDetail() {
                   style={{ background: product.accent }}
                 />
                 <div
-                  className="relative w-24 h-24 rounded-2xl grid place-items-center text-white"
+                  className="relative w-full h-[150px] rounded-2xl grid place-items-center px-6"
                   style={{
-                    background: product.accent,
+                    background: "rgba(255,255,255,0.96)",
                     boxShadow: "0 18px 40px -12px rgba(0,0,0,0.5)",
                   }}
                 >
-                  <Icon size={42} />
+                  <img
+                    src={getProductLogo(product.slug)}
+                    alt={product.name}
+                    className="max-w-full max-h-[110px] w-auto h-auto object-contain"
+                  />
                 </div>
                 <div className="relative mt-6 text-[28px] font-bold tracking-[-0.02em]">
                   {product.name}
@@ -357,7 +361,6 @@ export default function ProductDetail() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {related.map((p) => {
-                const RIcon = p.icon;
                 return (
                   <Link
                     key={p.slug}
@@ -366,10 +369,16 @@ export default function ProductDetail() {
                   >
                     <div className="flex items-center gap-3.5">
                       <span
-                        className="w-11 h-11 rounded-xl grid place-items-center text-white shrink-0"
-                        style={{ background: p.accent }}
+                        className="w-14 h-14 rounded-xl grid place-items-center shrink-0 bg-white border border-slate-100 p-2"
+                        style={{
+                          boxShadow: "0 6px 14px -8px rgba(16,64,166,0.25)",
+                        }}
                       >
-                        <RIcon size={20} />
+                        <img
+                          src={getProductLogo(p.slug)}
+                          alt={p.name}
+                          className="max-w-full max-h-full w-auto h-auto object-contain"
+                        />
                       </span>
                       <div>
                         <div className="text-[16px] font-bold" style={{ color: "#0b1736" }}>
