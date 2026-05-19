@@ -2,7 +2,7 @@ import { PHILOSOPHY } from "@/data";
 
 export default function Philosophy() {
   return (
-    <section id="about" className="relative bg-white pt-4 pb-28 px-6 lg:px-8 overflow-hidden">
+    <section id="about" className="relative bg-[#f7faff] pt-28 pb-28 px-6 lg:px-8 overflow-hidden">
       {/* Ambient soft glow */}
       <div
         className="pointer-events-none absolute inset-0 opacity-70"

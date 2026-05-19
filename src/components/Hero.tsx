@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { HERO_STATS } from "@/data";
+
 import poster1 from "@/assets/posters/1shop.png";
 import poster2 from "@/assets/posters/vietcare.png";
 import poster3 from "@/assets/posters/dealerpro.png";
@@ -281,30 +281,9 @@ export default function Hero() {
               <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {HERO_STATS.map((s) => (
-              <div
-                key={s.lbl}
-                className="px-5 py-3 rounded-2xl bg-white/[0.08] border border-white/[0.18] backdrop-blur-md min-w-[130px]"
-                style={{
-                  boxShadow:
-                    "0 8px 24px -12px rgba(16,64,166,0.45), inset 0 1px 0 rgba(255,255,255,0.12)",
-                }}
-              >
-                <div
-                  className="font-bold text-[22px] leading-none bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(90deg,#ffffff,#bfe2ff)" }}
-                >
-                  {s.num}
-                </div>
-                <div className="mt-1.5 text-[12px] font-medium text-white">{s.lbl}</div>
-              </div>
-            ))}
-
-          </div>
         </div>
       </div>
+
 
       {/* Fade to white */}
       <div

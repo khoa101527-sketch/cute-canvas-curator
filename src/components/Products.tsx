@@ -35,8 +35,7 @@ export default function Products() {
   return (
     <section
       id="product"
-      className="relative py-28 px-6 lg:px-8 overflow-hidden"
-      style={{ background: "linear-gradient(180deg,#ffffff 0%, #f4f8ff 100%)" }}
+      className="relative py-28 px-6 lg:px-8 overflow-hidden bg-[#f7faff]"
     >
       {/* ambient blobs */}
       <div
@@ -51,16 +50,8 @@ export default function Products() {
       <div className="max-w-[1280px] mx-auto relative">
         {/* Section heading */}
         <div className="text-center max-w-[820px] mx-auto">
-          <span
-            className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold"
-            style={{ color: "#1040A6" }}
-          >
-            <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-            Our Solutions
-            <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#7a5cff]" />
-          </span>
           <h2
-            className="mt-4 font-bold tracking-[-0.02em] leading-[1.1] text-foreground"
+            className="font-bold tracking-[-0.02em] leading-[1.1] text-foreground"
             style={{ fontSize: "clamp(34px,4vw,52px)" }}
           >
             3 nhóm sản phẩm{" "}
