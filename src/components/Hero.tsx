@@ -130,25 +130,32 @@ export default function Hero() {
             const visible = abs <= 2;
             const isCenter = off === 0;
 
-            // Scale, x, rotate per offset
+            // Mobile shows 1 banner at a time; desktop keeps 3D carousel
             const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.6;
-            const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-            const translateX = off * (isMobile ? 200 : 360);
-            const rotateY = -off * (isMobile ? 14 : 22);
-            const opacity = isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
+            const translateX = off * (isMobile ? 320 : 360);
+            const rotateY = isMobile ? 0 : -off * 22;
+            const opacity = isMobile ? (isCenter ? 1 : 0) : isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
             const blur = isCenter ? 0 : abs === 1 ? 1.5 : 3;
             const z = 100 - abs * 10;
+
+            const imgSrc = isMobile ? p.mobileSrc : p.src;
+            const widthCss = isMobile ? "min(74vw, 360px)" : "min(78vw, 980px)";
+            const aspect = isMobile ? "3/4" : "16/9";
+            const objectFit = isMobile ? "contain" : "cover";
 
             return (
               <button
                 key={i}
                 type="button"
                 aria-label={p.alt}
-                onClick={() => !isCenter && jumpTo(i)}
+                onClick={() => {
+                  if (isCenter) setLightbox(i);
+                  else jumpTo(i);
+                }}
                 className="absolute top-1/2 left-1/2 cursor-pointer"
                 style={{
-                  width: "min(78vw, 980px)",
-                  aspectRatio: "16/9",
+                  width: widthCss,
+                  aspectRatio: aspect,
                   transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
                   transformStyle: "preserve-3d",
                   opacity: visible ? opacity : 0,
@@ -169,9 +176,10 @@ export default function Hero() {
                   }}
                 >
                   <img
-                    src={p.src}
+                    src={imgSrc}
                     alt={p.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    style={{ objectFit }}
                     draggable={false}
                   />
                 </div>
@@ -192,12 +200,14 @@ export default function Hero() {
                   }}
                 >
                   <img
-                    src={p.src}
+                    src={imgSrc}
                     alt=""
-                    className="w-full h-full object-cover rounded-2xl"
+                    className="w-full h-full rounded-2xl"
+                    style={{ objectFit }}
                     draggable={false}
                   />
                 </div>
+
 
               </button>
             );
