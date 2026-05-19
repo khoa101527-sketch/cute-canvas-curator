@@ -110,66 +110,83 @@ export default function ProductDetail() {
 
             {/* RIGHT — floating composition */}
             <div className="relative">
-              <div
-                className="relative mx-auto rounded-[28px] p-8 overflow-hidden"
-                style={{
-                  background: "linear-gradient(160deg,#0a0c24 0%,#16306c 100%)",
-                  boxShadow: "0 40px 90px -30px rgba(16,64,166,0.45)",
-                }}
-              >
+              {PRODUCT_BANNERS[product.slug] ? (
                 <div
-                  className="absolute -top-24 -right-20 w-72 h-72 rounded-full opacity-60 blur-3xl"
-                  style={{ background: product.accent }}
-                />
-                {/* mock dashboard */}
-                <div className="relative rounded-2xl bg-white/95 p-5 shadow-2xl">
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                    </div>
-                    <div className="h-6 w-auto flex items-center">
-                      <img src={getProductLogo(product.slug)} alt="" className="h-5 w-auto object-contain" />
-                    </div>
-                  </div>
-                  <div className="mt-4 grid grid-cols-3 gap-2">
-                    {[0,1,2].map(i => (
-                      <div key={i} className="rounded-lg p-2.5" style={{ background: "linear-gradient(135deg,#f5f9ff,#eef4ff)" }}>
-                        <div className="text-[9px] text-slate-500 uppercase tracking-wider font-semibold">Metric {i+1}</div>
-                        <div className="text-[14px] font-bold mt-1" style={{ color: "#1040A6" }}>+{[24,38,12][i]}%</div>
+                  className="relative mx-auto rounded-[28px] overflow-hidden bg-white border border-slate-100"
+                  style={{
+                    boxShadow: "0 40px 90px -30px rgba(16,64,166,0.45)",
+                    aspectRatio: "16/9",
+                  }}
+                >
+                  <img
+                    src={PRODUCT_BANNERS[product.slug]}
+                    alt={product.name}
+                    className="w-full h-full object-contain"
+                    draggable={false}
+                  />
+                </div>
+              ) : (
+                <div
+                  className="relative mx-auto rounded-[28px] p-8 overflow-hidden"
+                  style={{
+                    background: "linear-gradient(160deg,#0a0c24 0%,#16306c 100%)",
+                    boxShadow: "0 40px 90px -30px rgba(16,64,166,0.45)",
+                  }}
+                >
+                  <div
+                    className="absolute -top-24 -right-20 w-72 h-72 rounded-full opacity-60 blur-3xl"
+                    style={{ background: product.accent }}
+                  />
+                  {/* mock dashboard */}
+                  <div className="relative rounded-2xl bg-white/95 p-5 shadow-2xl">
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
                       </div>
-                    ))}
-                  </div>
-                  <div className="mt-3 h-20 rounded-lg relative overflow-hidden" style={{ background: "linear-gradient(180deg,#f8fbff,#eef4ff)" }}>
-                    <svg viewBox="0 0 200 80" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-                      <path d="M0,60 Q40,40 60,45 T120,30 T200,15" fill="none" stroke="#1B8FD2" strokeWidth="2" />
-                      <path d="M0,70 Q40,55 60,58 T120,48 T200,35" fill="none" stroke="#1040A6" strokeWidth="2" opacity="0.6" />
-                    </svg>
-                  </div>
-                  <div className="mt-3 space-y-1.5">
-                    {[0,1].map(i => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-md" style={{ background: product.accent, opacity: 0.85 }} />
-                        <div className="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden">
-                          <div className="h-full rounded-full" style={{ width: `${[70,45][i]}%`, background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+                      <div className="h-6 w-auto flex items-center">
+                        <img src={getProductLogo(product.slug)} alt="" className="h-5 w-auto object-contain" />
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-3 gap-2">
+                      {[0,1,2].map(i => (
+                        <div key={i} className="rounded-lg p-2.5" style={{ background: "linear-gradient(135deg,#f5f9ff,#eef4ff)" }}>
+                          <div className="text-[9px] text-slate-500 uppercase tracking-wider font-semibold">Metric {i+1}</div>
+                          <div className="text-[14px] font-bold mt-1" style={{ color: "#1040A6" }}>+{[24,38,12][i]}%</div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    <div className="mt-3 h-20 rounded-lg relative overflow-hidden" style={{ background: "linear-gradient(180deg,#f8fbff,#eef4ff)" }}>
+                      <svg viewBox="0 0 200 80" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                        <path d="M0,60 Q40,40 60,45 T120,30 T200,15" fill="none" stroke="#1B8FD2" strokeWidth="2" />
+                        <path d="M0,70 Q40,55 60,58 T120,48 T200,35" fill="none" stroke="#1040A6" strokeWidth="2" opacity="0.6" />
+                      </svg>
+                    </div>
+                    <div className="mt-3 space-y-1.5">
+                      {[0,1].map(i => (
+                        <div key={i} className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-md" style={{ background: product.accent, opacity: 0.85 }} />
+                          <div className="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-full rounded-full" style={{ width: `${[70,45][i]}%`, background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* float chip */}
-                <div className="absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 bg-white shadow-2xl border border-slate-100 flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl grid place-items-center text-white" style={{ background: product.accent }}>
-                    <Sparkles size={16} />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Powered by</div>
-                    <div className="text-[12.5px] font-bold" style={{ color: "#0b1736" }}>AIPOWER</div>
+                  {/* float chip */}
+                  <div className="absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 bg-white shadow-2xl border border-slate-100 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl grid place-items-center text-white" style={{ background: product.accent }}>
+                      <Sparkles size={16} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Powered by</div>
+                      <div className="text-[12.5px] font-bold" style={{ color: "#0b1736" }}>AIPOWER</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
