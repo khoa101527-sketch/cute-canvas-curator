@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { ChevronDown, Menu, X, Globe, Check } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
 import { PRODUCT_GROUP_META, type ProductGroupKey } from "@/data/products";
@@ -13,6 +13,23 @@ const PRODUCT_DROPDOWN: { key: ProductGroupKey; label: string }[] = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const [lang, setLang] = useState<"vi" | "ja" | "en">("vi");
+  const langRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const LANGS: { code: "vi" | "ja" | "en"; label: string; flag: string }[] = [
+    { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
+    { code: "ja", label: "日本語", flag: "🇯🇵" },
+    { code: "en", label: "English", flag: "🇬🇧" },
+  ];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -238,16 +255,56 @@ export default function Header() {
         })}
       </nav>
 
-      {/* Mobile hamburger */}
-      <button
-        type="button"
-        aria-label="Open menu"
-        onClick={() => setMobileOpen((v) => !v)}
-        className="md:hidden grid place-items-center w-10 h-10 rounded-full"
-        style={{ color: textColor, background: isDark ? "rgba(255,255,255,0.06)" : "rgba(15,30,80,0.04)" }}
-      >
-        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-      </button>
+      {/* Right cluster: language switcher + mobile hamburger */}
+      <div className="flex items-center gap-2 shrink-0">
+        {/* Language switcher (UI only) */}
+        <div className="relative" ref={langRef}>
+          <button
+            type="button"
+            aria-label="Change language"
+            onClick={() => setLangOpen((v) => !v)}
+            className="flex items-center gap-1.5 h-10 px-3 rounded-full text-[13px] font-semibold transition-colors"
+            style={{
+              color: textColor,
+              background: isDark ? "rgba(255,255,255,0.06)" : "rgba(15,30,80,0.04)",
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(15,30,80,0.08)"}`,
+            }}
+          >
+            <Globe size={15} />
+            <span className="uppercase tracking-wide">{lang}</span>
+            <ChevronDown size={12} className={`transition-transform ${langOpen ? "rotate-180" : ""}`} />
+          </button>
+          {langOpen && (
+            <div className="absolute top-full right-0 mt-2 min-w-[180px] rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden py-1.5 z-50">
+              {LANGS.map((l) => (
+                <button
+                  key={l.code}
+                  type="button"
+                  onClick={() => { setLang(l.code); setLangOpen(false); }}
+                  className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[13.5px] text-slate-700 font-medium hover:bg-blue-50/80 hover:text-[#1040A6] transition-colors"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className="text-[15px] leading-none">{l.flag}</span>
+                    <span>{l.label}</span>
+                  </span>
+                  {lang === l.code && <Check size={14} className="text-[#1040A6]" />}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          aria-label="Open menu"
+          onClick={() => setMobileOpen((v) => !v)}
+          className="md:hidden grid place-items-center w-10 h-10 rounded-full"
+          style={{ color: textColor, background: isDark ? "rgba(255,255,255,0.06)" : "rgba(15,30,80,0.04)" }}
+        >
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
 
       {/* Mobile dropdown panel */}
       {mobileOpen && (
