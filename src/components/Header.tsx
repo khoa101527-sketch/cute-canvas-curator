@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
 import { PRODUCT_GROUP_META, type ProductGroupKey } from "@/data/products";
