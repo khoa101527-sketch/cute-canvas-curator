@@ -123,29 +123,15 @@ export default function Header() {
           e.preventDefault();
           navigate("/");
         }}
-        className="relative flex items-center shrink-0"
+        className="flex items-center shrink-0"
       >
-        <span className="relative block -my-3 h-14 md:h-[68px]">
-          <img
-            src="/images/aipower-logo-black.svg"
-            alt="AIPOWER"
-            className="absolute inset-y-0 left-0 h-full w-auto"
-            style={{
-              opacity: isDark ? 0 : 1,
-              transition: "opacity 300ms ease",
-            }}
-          />
-          <img
-            src="/images/aipower-logo-white.svg"
-            alt="AIPOWER"
-            aria-hidden={!isDark}
-            className="absolute inset-y-0 left-0 h-full w-auto"
-            style={{
-              opacity: isDark ? 1 : 0,
-              transition: "opacity 300ms ease",
-            }}
-          />
-        </span>
+        <img
+          key={isDark ? "white" : "black"}
+          src={isDark ? "/images/aipower-logo-white.svg" : "/images/aipower-logo-black.svg"}
+          alt="AIPOWER"
+          className="block w-auto"
+          style={{ height: 36, transition: "opacity 300ms ease" }}
+        />
       </a>
 
       {/* Nav */}
