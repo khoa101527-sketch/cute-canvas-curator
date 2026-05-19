@@ -314,6 +314,34 @@ export default function Hero() {
             "linear-gradient(to bottom, rgba(26,31,74,0) 0%, rgba(60,80,160,0.18) 45%, rgba(225,235,250,0.7) 82%, #ffffff 100%)",
         }}
       />
+
+      {/* Lightbox modal */}
+      {lightbox !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+          style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
+        >
+          <button
+            type="button"
+            aria-label="Close preview"
+            onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full grid place-items-center bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={isMobile ? POSTERS[lightbox].mobileSrc : POSTERS[lightbox].src}
+            alt={POSTERS[lightbox].alt}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+            style={{ maxHeight: "90vh", maxWidth: "min(1200px, 95vw)" }}
+            draggable={false}
+          />
+        </div>
+      )}
     </section>
   );
 }
