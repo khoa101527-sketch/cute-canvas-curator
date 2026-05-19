@@ -413,7 +413,6 @@ export const PRODUCT_LOGOS: Record<string, string> = {
   "1shop": "/images/products/1shop.svg",
   "dealer-pro": "/images/products/dealer-pro.png",
   aiacademy: "/images/products/aiacademy.png",
-  // Pending uploads — fallback to existing assets, will be replaced in next batch:
   aicamera: "/images/products/aicamera.png",
   aicanteen: "/images/products/aicanteen.png",
   "demand-planning": "/images/products/demand-planning.png",
