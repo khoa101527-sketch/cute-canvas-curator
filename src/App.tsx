@@ -15,6 +15,8 @@ import AboutUsa from "./pages/about/Usa";
 import AboutDanang from "./pages/about/Danang";
 import CareersPage from "./pages/careers/Index";
 import NewsPage from "./pages/news/Index";
+import IndustriesPage from "./pages/industries/Index";
+import CaseStudiesPage from "./pages/case-studies/Index";
 
 const queryClient = new QueryClient();
 
