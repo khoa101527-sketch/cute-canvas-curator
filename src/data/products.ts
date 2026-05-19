@@ -400,3 +400,25 @@ export const PRODUCTS_BY_GROUP: Record<ProductGroupKey, ProductItem[]> = {
 export function findProductBySlug(slug: string): ProductItem | undefined {
   return PRODUCTS.find((p) => p.slug === slug);
 }
+
+// Logo manifest — prefers SVG over PNG. Update here when adding new logos.
+// Add or override entries when new logo files are uploaded.
+export const PRODUCT_LOGOS: Record<string, string> = {
+  lumina: "/images/products/lumina.svg",
+  aiautomate: "/images/products/aiautomate.svg",
+  ailoyalty: "/images/products/ailoyalty.svg",
+  aiconnect: "/images/products/aiconnect.svg",
+  oraspa: "/images/products/oraspa.svg",
+  vietcare: "/images/products/vietcare.svg",
+  "1shop": "/images/products/1shop.svg",
+  "dealer-pro": "/images/products/dealer-pro.png",
+  aiacademy: "/images/products/aiacademy.png",
+  // Pending uploads — fallback to existing assets, will be replaced in next batch:
+  aicamera: "/images/products/aicamera.png",
+  aicanteen: "/images/products/aicanteen.png",
+  "demand-planning": "/images/products/demand-planning.png",
+};
+
+export function getProductLogo(slug: string): string {
+  return PRODUCT_LOGOS[slug] ?? `/images/products/${slug}.png`;
+}
