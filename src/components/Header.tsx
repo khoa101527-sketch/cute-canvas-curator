@@ -13,6 +13,8 @@ const PRODUCT_DROPDOWN: { key: ProductGroupKey; label: string }[] = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSub, setMobileSub] = useState<string | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const navigate = useNavigate();
   const { pathname } = useLocation();
