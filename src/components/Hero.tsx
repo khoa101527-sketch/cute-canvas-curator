@@ -1,26 +1,53 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { HERO_STATS } from "@/data";
 import poster1 from "@/assets/posters/1shop.png";
 import poster2 from "@/assets/posters/vietcare.png";
 import poster3 from "@/assets/posters/dealerpro.png";
 import poster4 from "@/assets/posters/aicamera.png";
 import poster5 from "@/assets/posters/ailoyalty.png";
+import mPoster1 from "@/assets/posters/mobile/1shop.png";
+import mPoster2 from "@/assets/posters/mobile/vietcare.png";
+import mPoster3 from "@/assets/posters/mobile/dealerpro.png";
+import mPoster4 from "@/assets/posters/mobile/aicamera.png";
+import mPoster5 from "@/assets/posters/mobile/ailoyalty.png";
 
 const POSTERS = [
-  { src: poster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
-  { src: poster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
-  { src: poster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
-  { src: poster4, alt: "AI Camera - Giải pháp camera AI" },
-  { src: poster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
+  { src: poster1, mobileSrc: mPoster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
+  { src: poster2, mobileSrc: mPoster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
+  { src: poster3, mobileSrc: mPoster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
+  { src: poster4, mobileSrc: mPoster4, alt: "AI Camera - Giải pháp camera AI" },
+  { src: poster5, mobileSrc: mPoster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
 ];
+
 
 const AUTOPLAY_MS = 5000;
 
 export default function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const n = POSTERS.length;
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 768);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [lightbox]);
 
   const go = useCallback((dir: 1 | -1) => {
     setActive((p) => (p + dir + n) % n);
@@ -103,25 +130,32 @@ export default function Hero() {
             const visible = abs <= 2;
             const isCenter = off === 0;
 
-            // Scale, x, rotate per offset
+            // Mobile shows 1 banner at a time; desktop keeps 3D carousel
             const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.6;
-            const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-            const translateX = off * (isMobile ? 200 : 360);
-            const rotateY = -off * (isMobile ? 14 : 22);
-            const opacity = isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
+            const translateX = off * (isMobile ? 320 : 360);
+            const rotateY = isMobile ? 0 : -off * 22;
+            const opacity = isMobile ? (isCenter ? 1 : 0) : isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
             const blur = isCenter ? 0 : abs === 1 ? 1.5 : 3;
             const z = 100 - abs * 10;
+
+            const imgSrc = isMobile ? p.mobileSrc : p.src;
+            const widthCss = isMobile ? "min(74vw, 360px)" : "min(78vw, 980px)";
+            const aspect = isMobile ? "3/4" : "16/9";
+            const objectFit = isMobile ? "contain" : "cover";
 
             return (
               <button
                 key={i}
                 type="button"
                 aria-label={p.alt}
-                onClick={() => !isCenter && jumpTo(i)}
+                onClick={() => {
+                  if (isCenter) setLightbox(i);
+                  else jumpTo(i);
+                }}
                 className="absolute top-1/2 left-1/2 cursor-pointer"
                 style={{
-                  width: "min(78vw, 980px)",
-                  aspectRatio: "16/9",
+                  width: widthCss,
+                  aspectRatio: aspect,
                   transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
                   transformStyle: "preserve-3d",
                   opacity: visible ? opacity : 0,
@@ -142,9 +176,10 @@ export default function Hero() {
                   }}
                 >
                   <img
-                    src={p.src}
+                    src={imgSrc}
                     alt={p.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    style={{ objectFit }}
                     draggable={false}
                   />
                 </div>
@@ -165,12 +200,14 @@ export default function Hero() {
                   }}
                 >
                   <img
-                    src={p.src}
+                    src={imgSrc}
                     alt=""
-                    className="w-full h-full object-cover rounded-2xl"
+                    className="w-full h-full rounded-2xl"
+                    style={{ objectFit }}
                     draggable={false}
                   />
                 </div>
+
 
               </button>
             );
@@ -277,6 +314,34 @@ export default function Hero() {
             "linear-gradient(to bottom, rgba(26,31,74,0) 0%, rgba(60,80,160,0.18) 45%, rgba(225,235,250,0.7) 82%, #ffffff 100%)",
         }}
       />
+
+      {/* Lightbox modal */}
+      {lightbox !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+          style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
+        >
+          <button
+            type="button"
+            aria-label="Close preview"
+            onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full grid place-items-center bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={isMobile ? POSTERS[lightbox].mobileSrc : POSTERS[lightbox].src}
+            alt={POSTERS[lightbox].alt}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+            style={{ maxHeight: "90vh", maxWidth: "min(1200px, 95vw)" }}
+            draggable={false}
+          />
+        </div>
+      )}
     </section>
   );
 }
