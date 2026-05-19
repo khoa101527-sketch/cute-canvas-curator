@@ -4,7 +4,7 @@ import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const MODULE_ICONS = [Layers, Zap, BarChart3, Sparkles, Target, Building2];
+
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
