@@ -81,19 +81,7 @@ export default function ProductDetail() {
               <div className="h-16 md:h-20 mb-6 flex items-center">
                 <img src={getProductLogo(product.slug)} alt={product.name} className="max-h-full w-auto object-contain" />
               </div>
-              <span
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.18em] uppercase"
-                style={{ background: "rgba(16,64,166,0.08)", border: "1px solid rgba(16,64,166,0.15)", color: "#1040A6" }}
-              >
-                {groupMeta.eyebrow} · {groupMeta.title}
-              </span>
-              <h1
-                className="mt-5 font-bold tracking-[-0.025em] leading-[1.05]"
-                style={{ fontSize: "clamp(36px,4.8vw,60px)", color: "#0b1736" }}
-              >
-                {product.name}
-              </h1>
-              <p className="mt-4 text-[18px] leading-[1.55] font-semibold" style={{ color: "#1040A6" }}>
+              <p className="mt-2 text-[18px] leading-[1.55] font-semibold" style={{ color: "#1040A6" }}>
                 {product.tagline}
               </p>
               <p className="mt-3 text-[15.5px] leading-[1.7] text-slate-600 max-w-[560px]">
