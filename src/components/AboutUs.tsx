@@ -139,6 +139,23 @@ export default function AboutUs() {
             </button>
           </div>
         </div>
+
+        {/* Stats row — full width under both columns */}
+        <div className="mt-14 pt-10 border-t border-slate-200/70 grid grid-cols-3 sm:grid-cols-6 gap-4">
+          {STATS.map((s) => (
+            <div key={s.lbl} className="text-left">
+              <div
+                className="text-[24px] sm:text-[30px] font-bold bg-clip-text text-transparent leading-none"
+                style={{ backgroundImage: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}
+              >
+                {s.num}
+              </div>
+              <div className="mt-2 text-[11.5px] sm:text-[12px] leading-[1.35] text-slate-500 font-medium">
+                {s.lbl}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Lightbox */}
