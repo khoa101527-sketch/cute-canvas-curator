@@ -105,8 +105,9 @@ export default function Hero() {
 
             // Scale, x, rotate per offset
             const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.6;
-            const translateX = off * 360; // px
-            const rotateY = -off * 22;
+            const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+            const translateX = off * (isMobile ? 200 : 360);
+            const rotateY = -off * (isMobile ? 14 : 22);
             const opacity = isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
             const blur = isCenter ? 0 : abs === 1 ? 1.5 : 3;
             const z = 100 - abs * 10;
