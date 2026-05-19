@@ -173,16 +173,11 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Editorial body — faithful to AIPOWER capability slide */}
       <article className="bg-white">
-        <div className="max-w-[860px] mx-auto px-6 lg:px-8 py-20 lg:py-24 space-y-16 lg:space-y-20">
+        <div className="max-w-[1180px] mx-auto px-6 lg:px-8 py-16 lg:py-20 space-y-14 lg:space-y-16">
 
           {/* 1. Giải quyết vấn đề gì? */}
-          <section>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
-              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>01 · Vấn đề</span>
-            </div>
+          <section className="max-w-[820px]">
             <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
               Giải quyết vấn đề gì?
             </h2>
@@ -197,11 +192,7 @@ export default function ProductDetail() {
           </section>
 
           {/* 2. Vai trò */}
-          <section>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
-              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>02 · Vai trò</span>
-            </div>
+          <section className="max-w-[820px]">
             <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
               Vai trò
             </h2>
@@ -220,11 +211,7 @@ export default function ProductDetail() {
           </section>
 
           {/* 3. Khách hàng */}
-          <section>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
-              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>03 · Khách hàng</span>
-            </div>
+          <section className="max-w-[820px]">
             <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
               Khách hàng
             </h2>
@@ -244,11 +231,7 @@ export default function ProductDetail() {
           </section>
 
           {/* 4. Kết quả điển hình */}
-          <section>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
-              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>04 · Kết quả</span>
-            </div>
+          <section className="max-w-[820px]">
             <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
               Kết quả điển hình
             </h2>
@@ -264,6 +247,7 @@ export default function ProductDetail() {
 
         </div>
       </article>
+
 
 
 
