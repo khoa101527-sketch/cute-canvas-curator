@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import poster1 from "@/assets/posters/1shop.png";
 import poster2 from "@/assets/posters/vietcare.png";
@@ -13,11 +14,11 @@ import mPoster4 from "@/assets/posters/mobile/aicamera.png";
 import mPoster5 from "@/assets/posters/mobile/ailoyalty.png";
 
 const POSTERS = [
-  { src: poster1, mobileSrc: mPoster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
-  { src: poster2, mobileSrc: mPoster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
-  { src: poster3, mobileSrc: mPoster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
-  { src: poster4, mobileSrc: mPoster4, alt: "AI Camera - Giải pháp camera AI" },
-  { src: poster5, mobileSrc: mPoster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
+  { src: poster1, mobileSrc: mPoster1, alt: "1Shop - Nền tảng bán hàng toàn diện", slug: "1shop" },
+  { src: poster2, mobileSrc: mPoster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện", slug: "vietcare" },
+  { src: poster3, mobileSrc: mPoster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu", slug: "dealer-pro" },
+  { src: poster4, mobileSrc: mPoster4, alt: "AI Camera - Giải pháp camera AI", slug: "aicamera" },
+  { src: poster5, mobileSrc: mPoster5, alt: "AILoyalty - Nền tảng Loyalty thông minh", slug: "ailoyalty" },
 ];
 
 
@@ -27,7 +28,6 @@ export default function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [lightbox, setLightbox] = useState<number | null>(null);
   const n = POSTERS.length;
 
   useEffect(() => {
@@ -36,18 +36,6 @@ export default function Hero() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
-
-  useEffect(() => {
-    if (lightbox === null) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [lightbox]);
 
   const go = useCallback((dir: 1 | -1) => {
     setActive((p) => (p + dir + n) % n);
@@ -63,13 +51,18 @@ export default function Hero() {
 
   // Drag
   const dragStart = useRef<number | null>(null);
+  const dragMoved = useRef(false);
   function onPointerDown(e: React.PointerEvent) {
     dragStart.current = e.clientX;
+    dragMoved.current = false;
   }
   function onPointerUp(e: React.PointerEvent) {
     if (dragStart.current == null) return;
     const dx = e.clientX - dragStart.current;
-    if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+    if (Math.abs(dx) > 50) {
+      dragMoved.current = true;
+      go(dx < 0 ? 1 : -1);
+    }
     dragStart.current = null;
   }
 
@@ -130,7 +123,6 @@ export default function Hero() {
             const visible = abs <= 2;
             const isCenter = off === 0;
 
-            // Mobile shows 1 banner at a time; desktop keeps 3D carousel
             const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.6;
             const translateX = off * (isMobile ? 320 : 360);
             const rotateY = isMobile ? 0 : -off * 22;
@@ -143,29 +135,21 @@ export default function Hero() {
             const aspect = isMobile ? "3/4" : "16/9";
             const objectFit = isMobile ? "contain" : "cover";
 
-            return (
-              <button
-                key={i}
-                type="button"
-                aria-label={p.alt}
-                onClick={() => {
-                  if (isCenter) setLightbox(i);
-                  else jumpTo(i);
-                }}
-                className="absolute top-1/2 left-1/2 cursor-pointer"
-                style={{
-                  width: widthCss,
-                  aspectRatio: aspect,
-                  transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
-                  transformStyle: "preserve-3d",
-                  opacity: visible ? opacity : 0,
-                  filter: `blur(${blur}px)`,
-                  zIndex: z,
-                  transition:
-                    "transform 1000ms cubic-bezier(0.22,1,0.36,1), opacity 900ms ease, filter 900ms ease",
-                  pointerEvents: visible ? "auto" : "none",
-                }}
-              >
+            const commonStyle: React.CSSProperties = {
+              width: widthCss,
+              aspectRatio: aspect,
+              transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
+              transformStyle: "preserve-3d",
+              opacity: visible ? opacity : 0,
+              filter: `blur(${blur}px)`,
+              zIndex: z,
+              transition:
+                "transform 1000ms cubic-bezier(0.22,1,0.36,1), opacity 900ms ease, filter 900ms ease",
+              pointerEvents: visible ? "auto" : "none",
+            };
+
+            const inner = (
+              <>
                 <div
                   className="w-full h-full rounded-2xl overflow-hidden border border-white/10"
                   style={{
@@ -183,7 +167,6 @@ export default function Hero() {
                     draggable={false}
                   />
                 </div>
-                {/* Per-poster reflection */}
                 <div
                   aria-hidden
                   className="absolute left-0 right-0 top-full overflow-hidden pointer-events-none"
@@ -207,8 +190,39 @@ export default function Hero() {
                     draggable={false}
                   />
                 </div>
+              </>
+            );
 
+            if (isCenter) {
+              return (
+                <Link
+                  key={i}
+                  to={`/product/${p.slug}`}
+                  aria-label={p.alt}
+                  onClick={(e) => {
+                    if (dragMoved.current) {
+                      e.preventDefault();
+                      dragMoved.current = false;
+                    }
+                  }}
+                  className="absolute top-1/2 left-1/2 cursor-pointer block"
+                  style={commonStyle}
+                >
+                  {inner}
+                </Link>
+              );
+            }
 
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-label={p.alt}
+                onClick={() => jumpTo(i)}
+                className="absolute top-1/2 left-1/2 cursor-pointer"
+                style={commonStyle}
+              >
+                {inner}
               </button>
             );
           })}
@@ -293,34 +307,6 @@ export default function Hero() {
             "linear-gradient(to bottom, rgba(26,31,74,0) 0%, rgba(60,80,160,0.18) 45%, rgba(225,235,250,0.7) 82%, #ffffff 100%)",
         }}
       />
-
-      {/* Lightbox modal */}
-      {lightbox !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setLightbox(null)}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
-          style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
-        >
-          <button
-            type="button"
-            aria-label="Close preview"
-            onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full grid place-items-center bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-colors"
-          >
-            <X size={20} />
-          </button>
-          <img
-            src={isMobile ? POSTERS[lightbox].mobileSrc : POSTERS[lightbox].src}
-            alt={POSTERS[lightbox].alt}
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-            style={{ maxHeight: "90vh", maxWidth: "min(1200px, 95vw)" }}
-            draggable={false}
-          />
-        </div>
-      )}
     </section>
   );
 }
