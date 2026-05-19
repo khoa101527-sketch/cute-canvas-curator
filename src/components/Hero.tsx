@@ -1,261 +1,249 @@
-import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import { HERO_STATS, FLOAT_CARDS } from "@/data";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { HERO_STATS } from "@/data";
+import poster1 from "@/assets/posters/1shop.png";
+import poster2 from "@/assets/posters/vietcare.png";
+import poster3 from "@/assets/posters/dealerpro.png";
+import poster4 from "@/assets/posters/aicamera.png";
+import poster5 from "@/assets/posters/ailoyalty.png";
+
+const POSTERS = [
+  { src: poster1, alt: "1Shop - Nền tảng bán hàng toàn diện" },
+  { src: poster2, alt: "VietCare - Chăm sóc sức khoẻ toàn diện" },
+  { src: poster3, alt: "Dealer Pro - Quản lý đại lý chuyên sâu" },
+  { src: poster4, alt: "AI Camera - Giải pháp camera AI" },
+  { src: poster5, alt: "AILoyalty - Nền tảng Loyalty thông minh" },
+];
+
+const AUTOPLAY_MS = 5000;
 
 export default function Hero() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const n = POSTERS.length;
 
-  function handleMove(e: React.MouseEvent<HTMLElement>) {
-    const r = e.currentTarget.getBoundingClientRect();
-    const cx = (e.clientX - r.left - r.width / 2) / r.width;
-    const cy = (e.clientY - r.top - r.height / 2) / r.height;
-    if (stageRef.current) {
-      stageRef.current.style.transform = `translate(${cx * 12}px, ${cy * 12}px)`;
-    }
-    if (glowRef.current) {
-      glowRef.current.style.transform = `translate(${cx * 24}px, ${cy * 24}px)`;
-    }
-    if (cardsRef.current) {
-      const cards = cardsRef.current.querySelectorAll<HTMLElement>("[data-float]");
-      cards.forEach((c, i) => {
-        const k = (i + 1) * 6;
-        c.style.transform = `translate(${cx * -k}px, ${cy * -k}px)`;
-      });
-    }
+  const go = useCallback((dir: 1 | -1) => {
+    setActive((p) => (p + dir + n) % n);
+  }, [n]);
+
+  const jumpTo = useCallback((i: number) => setActive(((i % n) + n) % n), [n]);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setActive((p) => (p + 1) % n), AUTOPLAY_MS);
+    return () => clearInterval(t);
+  }, [paused, n]);
+
+  // Drag
+  const dragStart = useRef<number | null>(null);
+  function onPointerDown(e: React.PointerEvent) {
+    dragStart.current = e.clientX;
+  }
+  function onPointerUp(e: React.PointerEvent) {
+    if (dragStart.current == null) return;
+    const dx = e.clientX - dragStart.current;
+    if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+    dragStart.current = null;
   }
 
-  function handleLeave() {
-    if (stageRef.current) stageRef.current.style.transform = "";
-    if (glowRef.current) glowRef.current.style.transform = "";
-    if (cardsRef.current) {
-      cardsRef.current.querySelectorAll<HTMLElement>("[data-float]").forEach((c) => {
-        c.style.transform = "";
-      });
-    }
+  function offsetOf(i: number) {
+    let d = i - active;
+    if (d > n / 2) d -= n;
+    if (d < -n / 2) d += n;
+    return d;
   }
 
   return (
     <section
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
       data-theme="dark"
-      className="relative min-h-[112vh] overflow-hidden text-white pb-32"
+      className="relative overflow-hidden text-white pb-28"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {/* Deep navy + blue + subtle purple background */}
+      {/* Background */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(1100px 720px at 75% 45%, rgba(48,110,242,0.55) 0%, rgba(102,79,199,0.35) 35%, transparent 65%)," +
-            "radial-gradient(900px 600px at 18% 70%, rgba(102,79,199,0.22), transparent 65%)," +
-            "radial-gradient(800px 500px at 50% 0%, rgba(94,140,255,0.16), transparent 70%)," +
-            "linear-gradient(180deg,#0a0c24 0%, #10112a 35%, #161a3e 70%, #1a1f4a 100%)",
+            "radial-gradient(900px 600px at 50% 35%, rgba(48,110,242,0.4) 0%, rgba(102,79,199,0.2) 40%, transparent 70%)," +
+            "linear-gradient(180deg,#0a0c24 0%, #10112a 40%, #161a3e 80%, #1a1f4a 100%)",
         }}
       />
-      {/* Grid overlay */}
       <div
-        className="absolute inset-0 -z-10 opacity-[0.32] pointer-events-none"
+        className="absolute inset-0 -z-10 opacity-[0.22] pointer-events-none"
         style={{
           backgroundImage:
             "linear-gradient(rgba(180,210,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(180,210,255,0.05) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(ellipse at 50% 45%, #000 35%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse at 50% 45%, #000 35%, transparent 80%)",
-        }}
-      />
-      {/* Twinkles — blue + subtle purple */}
-      <div
-        className="absolute inset-0 -z-10 pointer-events-none animate-[twinkle_6s_ease-in-out_infinite_alternate]"
-        style={{
-          background:
-            "radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.55), transparent 50%)," +
-            "radial-gradient(1px 1px at 70% 20%, rgba(190,210,255,0.6), transparent 50%)," +
-            "radial-gradient(1.4px 1.4px at 85% 70%, rgba(94,192,255,0.7), transparent 50%)," +
-            "radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,0.5), transparent 50%)," +
-            "radial-gradient(1px 1px at 60% 50%, rgba(140,120,230,0.65), transparent 50%)," +
-            "radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,0.45), transparent 50%)",
+          maskImage: "radial-gradient(ellipse at 50% 40%, #000 35%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse at 50% 40%, #000 35%, transparent 80%)",
         }}
       />
 
-      <div className="relative max-w-[1280px] mx-auto px-6 lg:px-8 pt-44 pb-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 items-center min-h-[100vh]">
-        {/* Left */}
-        <div>
+      {/* Center glow behind active poster */}
+      <div
+        className="absolute left-1/2 top-[26%] -translate-x-1/2 -z-10 w-[900px] h-[520px] rounded-full blur-[60px] opacity-70 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(48,110,242,0.45) 0%, rgba(102,79,199,0.22) 45%, transparent 75%)",
+        }}
+      />
+
+      <div className="relative max-w-[1400px] mx-auto px-4 lg:px-8 pt-36">
+        {/* Poster Showcase */}
+        <div
+          className="relative h-[460px] sm:h-[520px] md:h-[560px] lg:h-[600px] select-none"
+          style={{ perspective: "1800px" }}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+        >
+          {POSTERS.map((p, i) => {
+            const off = offsetOf(i);
+            const abs = Math.abs(off);
+            const visible = abs <= 2;
+            const isCenter = off === 0;
+
+            // Scale, x, rotate per offset
+            const scale = isCenter ? 1 : abs === 1 ? 0.78 : 0.6;
+            const translateX = off * 360; // px
+            const rotateY = -off * 22;
+            const opacity = isCenter ? 1 : abs === 1 ? 0.75 : 0.35;
+            const blur = isCenter ? 0 : abs === 1 ? 1.5 : 3;
+            const z = 100 - abs * 10;
+
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-label={p.alt}
+                onClick={() => !isCenter && jumpTo(i)}
+                className="absolute top-1/2 left-1/2 cursor-pointer"
+                style={{
+                  width: "min(78vw, 980px)",
+                  aspectRatio: "16/9",
+                  transform: `translate(-50%, -50%) translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
+                  transformStyle: "preserve-3d",
+                  opacity: visible ? opacity : 0,
+                  filter: `blur(${blur}px)`,
+                  zIndex: z,
+                  transition:
+                    "transform 1000ms cubic-bezier(0.22,1,0.36,1), opacity 900ms ease, filter 900ms ease",
+                  pointerEvents: visible ? "auto" : "none",
+                }}
+              >
+                <div
+                  className="w-full h-full rounded-2xl overflow-hidden border border-white/10"
+                  style={{
+                    boxShadow: isCenter
+                      ? "0 40px 90px -20px rgba(16,64,166,0.55), 0 10px 30px rgba(0,0,0,0.45)"
+                      : "0 20px 50px -10px rgba(0,0,0,0.5)",
+                    background: "#0b1024",
+                  }}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </div>
+              </button>
+            );
+          })}
+
+          {/* Reflection */}
+          <div
+            className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 w-[70%] h-[80px] pointer-events-none opacity-50 blur-2xl"
+            style={{
+              background:
+                "radial-gradient(ellipse, rgba(94,192,255,0.35), transparent 70%)",
+            }}
+          />
+
+          {/* Controls bottom-right */}
+          <div className="absolute right-2 lg:right-6 bottom-2 flex items-center gap-2 z-[200]">
+            <button
+              onClick={() => go(-1)}
+              aria-label="Previous"
+              className="w-10 h-10 rounded-full grid place-items-center text-white/90
+                bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 backdrop-blur-md
+                transition-all"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => go(1)}
+              aria-label="Next"
+              className="w-10 h-10 rounded-full grid place-items-center text-white/90
+                bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 backdrop-blur-md
+                transition-all"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Text content */}
+        <div className="mt-20 text-center max-w-[860px] mx-auto px-4">
           <h1
-            className="font-bold tracking-[-0.03em] leading-[1.02]"
-            style={{ fontSize: "clamp(48px, 6vw, 86px)" }}
+            className="font-bold tracking-[-0.03em] leading-[1.05]"
+            style={{ fontSize: "clamp(40px, 5.4vw, 72px)" }}
           >
             <span
               className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(100deg,#5ec0ff 0%,#1B8FD2 45%,#1040A6 100%)" }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(100deg,#5ec0ff 0%,#1B8FD2 45%,#ffffff 100%)",
+              }}
             >
               AI Power
-            </span>
-            <br />
+            </span>{" "}
             your work.
           </h1>
-          <p className="mt-6 text-[17.5px] leading-[1.65] text-white/70 max-w-[540px]">
-            Hệ sinh thái AI dành cho doanh nghiệp — nền tảng tự động hoá vận hành, giải pháp quản trị
-            thông minh và đào tạo AI, giúp doanh nghiệp chuyển đổi số toàn diện và tăng trưởng bền vững
-            trong kỷ nguyên trí tuệ nhân tạo.
+          <p className="mt-5 text-[16px] md:text-[17px] leading-[1.65] text-white/70 mx-auto max-w-[680px]">
+            Hệ sinh thái AI giúp doanh nghiệp tự động hoá vận hành, quản trị thông minh
+            và tăng trưởng bền vững trong kỷ nguyên trí tuệ nhân tạo.
           </p>
 
-          <div className="mt-10 flex items-center gap-4 flex-wrap">
+          <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
             <button
-              className="group inline-flex items-center gap-2 whitespace-nowrap px-7 py-4 rounded-full font-semibold text-[15.5px] text-white
-                transition-all duration-300 hover:scale-[1.02]"
+              className="group inline-flex items-center gap-2 whitespace-nowrap px-7 py-3.5 rounded-full font-semibold text-[15px] text-white transition-all duration-300 hover:scale-[1.02]"
               style={{
                 background: "linear-gradient(135deg,#1040A6 0%,#1B8FD2 100%)",
                 boxShadow:
-                  "0 8px 18px -6px rgba(16,64,166,0.45), 0 1px 0 rgba(255,255,255,0.18) inset",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 12px 26px -8px rgba(16,64,166,0.55), 0 1px 0 rgba(255,255,255,0.22) inset";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 8px 18px -6px rgba(16,64,166,0.45), 0 1px 0 rgba(255,255,255,0.18) inset";
+                  "0 8px 18px -6px rgba(16,64,166,0.5), 0 1px 0 rgba(255,255,255,0.18) inset",
               }}
             >
-              <span className="whitespace-nowrap">Contact Us</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
+              <span>Contact Us</span>
+              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
             {HERO_STATS.map((s) => (
               <div
                 key={s.lbl}
-                className="px-5 py-3.5 rounded-2xl bg-white/[0.05] border border-white/[0.11] backdrop-blur-md min-w-[140px]"
+                className="px-4 py-2.5 rounded-2xl bg-white/[0.05] border border-white/[0.11] backdrop-blur-md min-w-[120px]"
               >
                 <div
-                  className="font-bold text-[26px] leading-none bg-clip-text text-transparent"
+                  className="font-bold text-[20px] leading-none bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(90deg,#9bd6ff,#5ec0ff)" }}
                 >
                   {s.num}
                 </div>
-                <div className="mt-1.5 text-[12.5px] font-medium text-white/85">{s.lbl}</div>
+                <div className="mt-1 text-[11.5px] font-medium text-white/80">{s.lbl}</div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Right – AI face */}
-        <div className="relative h-full min-h-[560px]">
-          <div
-            ref={stageRef}
-            className="absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out"
-          >
-            {/* glow follows cursor — blue + subtle purple */}
-            <div
-              ref={glowRef}
-              className="absolute w-[640px] h-[640px] rounded-full blur-[30px] animate-[pulseGlow_5s_ease-in-out_infinite_alternate] transition-transform duration-500 ease-out"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(48,110,242,0.6) 0%, rgba(102,79,199,0.32) 40%, transparent 72%)",
-              }}
-            />
-            {/* rings */}
-            <div className="absolute w-[780px] h-[780px] rounded-full border border-white/5" />
-            <div className="absolute w-[660px] h-[660px] rounded-full border border-dashed border-[rgba(27,143,210,0.18)] animate-[spin_80s_linear_infinite_reverse]" />
-            <div className="absolute w-[540px] h-[540px] rounded-full border border-[rgba(94,192,255,0.2)] animate-[spin_40s_linear_infinite]" />
-
-            {/* AI face image */}
-            <div
-              className="relative w-[560px] max-w-[95%] aspect-square"
-              style={{
-                backgroundImage: "url('/images/ai-face.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                mixBlendMode: "screen",
-                filter: "contrast(1.12) saturate(1.1) brightness(1.05) hue-rotate(-10deg)",
-                maskImage:
-                  "radial-gradient(ellipse 55% 65% at 50% 50%, #000 40%, rgba(0,0,0,0.6) 62%, transparent 85%)",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 55% 65% at 50% 50%, #000 40%, rgba(0,0,0,0.6) 62%, transparent 85%)",
-              }}
-              aria-hidden
-            />
-
-            {/* nodes (blue tones only) */}
-            <span
-              className="absolute top-[22%] right-[14%] w-1.5 h-1.5 rounded-full animate-[twinkle_3s_ease-in-out_infinite]"
-              style={{ background: "#5ec0ff", boxShadow: "0 0 12px #5ec0ff" }}
-            />
-            <span
-              className="absolute top-[70%] right-[20%] w-1.5 h-1.5 rounded-full animate-[twinkle_3s_ease-in-out_infinite_1s]"
-              style={{ background: "#1B8FD2", boxShadow: "0 0 12px #1B8FD2" }}
-            />
-            <span
-              className="absolute top-[40%] left-[10%] w-1.5 h-1.5 rounded-full animate-[twinkle_3s_ease-in-out_infinite_.5s]"
-              style={{ background: "#5ec0ff", boxShadow: "0 0 12px #5ec0ff" }}
-            />
-            <span
-              className="absolute bottom-[20%] right-[30%] w-1.5 h-1.5 rounded-full animate-[twinkle_3s_ease-in-out_infinite_1.5s]"
-              style={{ background: "#1040A6", boxShadow: "0 0 12px #1B8FD2" }}
-            />
-          </div>
-
-          {/* Floating glass cards — all 3 share identical style */}
-          <div ref={cardsRef}>
-            {FLOAT_CARDS.map((c) => {
-              const Icon = c.icon;
-              const posClass =
-                c.pos === "fc-1"
-                  ? "top-[12%] left-[-4%]"
-                  : c.pos === "fc-2"
-                  ? "top-[50%] right-[-6%]"
-                  : "bottom-[10%] left-[6%]";
-              return (
-                <div
-                  key={c.title}
-                  data-float
-                  className={`hidden md:flex absolute ${posClass} items-center gap-3 px-3.5 py-3 rounded-2xl
-                    bg-white/[0.07] border border-white/[0.13] backdrop-blur-xl
-                    shadow-[0_12px_34px_rgba(0,0,0,0.3)] animate-[float_6s_ease-in-out_infinite]
-                    transition-transform duration-300 ease-out min-w-[176px]`}
-                  style={{ animationDelay: `${c.delay}s` }}
-                >
-                  <div
-                    className="w-9 h-9 rounded-xl grid place-items-center text-white shrink-0"
-                    style={{ background: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}
-                  >
-                    <Icon size={16} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[12.5px] font-semibold text-white leading-[1.2]">{c.title}</div>
-                    <div className="text-[11px] text-white/65 mt-0.5 leading-[1.2]">{c.sub}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
       </div>
 
-      {/* Long, soft transition fade — premium dark → white */}
+      {/* Fade to white */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[380px] pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-[260px] pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, " +
-            "rgba(26,31,74,0) 0%, " +
-            "rgba(26,31,74,0.18) 22%, " +
-            "rgba(60,80,160,0.18) 42%, " +
-            "rgba(160,185,235,0.32) 65%, " +
-            "rgba(225,235,250,0.7) 82%, " +
-            "rgba(245,250,255,0.92) 94%, " +
-            "#ffffff 100%)",
-        }}
-      />
-      {/* extra ambient glow at fade zone */}
-      <div
-        className="absolute bottom-[160px] left-1/2 -translate-x-1/2 w-[1100px] h-[280px] pointer-events-none opacity-55 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(94,192,255,0.22), rgba(122,92,255,0.12) 55%, transparent 75%)",
+            "linear-gradient(to bottom, rgba(26,31,74,0) 0%, rgba(60,80,160,0.18) 45%, rgba(225,235,250,0.7) 82%, #ffffff 100%)",
         }}
       />
     </section>
