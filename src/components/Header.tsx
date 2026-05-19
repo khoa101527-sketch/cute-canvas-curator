@@ -238,7 +238,69 @@ export default function Header() {
         })}
       </nav>
 
-      <div className="w-9 md:w-10" aria-hidden />
+      {/* Mobile hamburger */}
+      <button
+        type="button"
+        aria-label="Open menu"
+        onClick={() => setMobileOpen((v) => !v)}
+        className="md:hidden grid place-items-center w-10 h-10 rounded-full"
+        style={{ color: textColor, background: isDark ? "rgba(255,255,255,0.06)" : "rgba(15,30,80,0.04)" }}
+      >
+        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
+
+      {/* Mobile dropdown panel */}
+      {mobileOpen && (
+        <div className="md:hidden absolute top-[calc(100%+10px)] left-0 right-0 rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden">
+          <div className="py-2 max-h-[70vh] overflow-y-auto">
+            {NAV_ITEMS.map((item) => {
+              const isProduct = item.id === "product";
+              const hasDropdown = !!item.dropdown || isProduct;
+              const itemHref = (item as { href?: string }).href;
+              const subOpen = mobileSub === item.label;
+              return (
+                <div key={item.label} className="border-b border-slate-100 last:border-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (hasDropdown) {
+                        setMobileSub(subOpen ? null : item.label);
+                      } else if (itemHref) {
+                        navigate(itemHref);
+                        setMobileOpen(false);
+                      }
+                    }}
+                    className="w-full flex items-center justify-between px-5 py-3.5 text-[15px] font-semibold text-slate-800"
+                  >
+                    <span>{item.label}</span>
+                    {hasDropdown && (
+                      <ChevronDown size={16} className={`transition-transform ${subOpen ? "rotate-180" : ""}`} />
+                    )}
+                  </button>
+                  {hasDropdown && subOpen && (
+                    <div className="bg-slate-50/60 pb-2">
+                      {(isProduct ? PRODUCT_DROPDOWN.map((g) => ({ label: PRODUCT_GROUP_META[g.key].title, href: `/products/${g.key}` })) : (item.dropdown ?? [])).map((d) => (
+                        <button
+                          key={d.label}
+                          type="button"
+                          onClick={() => {
+                            if (d.href && d.href.startsWith("/")) navigate(d.href);
+                            setMobileOpen(false);
+                            setMobileSub(null);
+                          }}
+                          className="block w-full text-left px-8 py-2.5 text-[14px] text-slate-600 hover:text-[#1040A6]"
+                        >
+                          {d.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
