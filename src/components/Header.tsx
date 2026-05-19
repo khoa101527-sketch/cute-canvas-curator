@@ -127,22 +127,20 @@ export default function Header() {
       >
         <span className="relative block -my-3 h-14 md:h-[68px]">
           <img
-            src="/images/aipower-logo.svg"
+            src="/images/aipower-logo-black.svg"
             alt="AIPOWER"
-            className="absolute inset-0 h-full w-auto"
+            className="absolute inset-y-0 left-0 h-full w-auto"
             style={{
               opacity: isDark ? 0 : 1,
               transition: "opacity 300ms ease",
             }}
           />
           <img
-            src="/images/aipower-logo-dark.svg"
+            src="/images/aipower-logo-white.svg"
             alt="AIPOWER"
             aria-hidden={!isDark}
-            className="absolute inset-y-0 left-0 w-auto"
+            className="absolute inset-y-0 left-0 h-full w-auto"
             style={{
-              height: "82%",
-              top: "9%",
               opacity: isDark ? 1 : 0,
               transition: "opacity 300ms ease",
             }}
