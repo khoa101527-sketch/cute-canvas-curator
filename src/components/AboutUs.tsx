@@ -38,13 +38,25 @@ export default function AboutUs() {
         }}
       />
 
-      <div className="relative max-w-[1280px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
+      <div className="relative max-w-[1200px] mx-auto">
+        {/* Section title */}
+        <h2
+          className="font-bold tracking-[-0.025em] leading-[1.1] text-slate-900"
+          style={{ fontSize: "clamp(30px,3.6vw,44px)" }}
+        >
+          Về chúng tôi
+        </h2>
+        <div
+          className="mt-2 h-[3px] w-[56px] rounded-full"
+          style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }}
+        />
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-start">
           {/* Left — content */}
           <div>
-            <h2
-              className="font-bold tracking-[-0.025em] leading-[1.08] text-slate-900"
-              style={{ fontSize: "clamp(34px,4.6vw,58px)" }}
+            <p
+              className="font-semibold tracking-[-0.01em] leading-[1.35] text-slate-800"
+              style={{ fontSize: "clamp(18px,1.6vw,22px)" }}
             >
               Building Trust.{" "}
               <span
@@ -54,19 +66,19 @@ export default function AboutUs() {
                 Driving Innovation.
               </span>{" "}
               Contributing to Society.
-            </h2>
+            </p>
 
-            <p className="mt-7 text-[17px] leading-[1.75] text-slate-600 max-w-[640px]">
+            <p className="mt-5 text-[16px] leading-[1.75] text-slate-600 max-w-[620px]">
               Established in 2019 in Ho Chi Minh City, AIPOWER delivers cutting-edge technology solutions
               to optimize business operations. Specializing in enterprise management software, AI, digital
               transformation and Fintech–Web3, we continuously expand our reach to deliver optimal solutions.
             </p>
-            <p className="mt-4 text-[16px] leading-[1.75] text-slate-500 max-w-[640px]">
+            <p className="mt-3 text-[15px] leading-[1.75] text-slate-500 max-w-[620px]">
               With a highly experienced team and offices in Japan and Hanoi, we are committed to supporting
               businesses in overcoming challenges and achieving sustainable success.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href="/about"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-[14.5px] font-semibold transition-transform hover:-translate-y-0.5"
@@ -78,34 +90,17 @@ export default function AboutUs() {
                 Read more <ArrowRight size={16} />
               </a>
             </div>
-
-            {/* Stats grid */}
-            <div className="mt-12 grid grid-cols-3 sm:grid-cols-6 gap-4">
-              {STATS.map((s) => (
-                <div key={s.lbl} className="text-left">
-                  <div
-                    className="text-[24px] sm:text-[28px] font-bold bg-clip-text text-transparent leading-none"
-                    style={{ backgroundImage: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}
-                  >
-                    {s.num}
-                  </div>
-                  <div className="mt-2 text-[11.5px] sm:text-[12px] leading-[1.35] text-slate-500 font-medium">
-                    {s.lbl}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right — video thumbnail */}
-          <div>
+          <div className="lg:pt-2">
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="group relative block w-full rounded-[28px] overflow-hidden cursor-pointer"
+              className="group relative block w-full rounded-[24px] overflow-hidden cursor-pointer max-w-[520px] ml-auto"
               style={{
-                aspectRatio: "16/9",
-                boxShadow: "0 30px 70px -20px rgba(16,64,166,0.35)",
+                aspectRatio: "16/10",
+                boxShadow: "0 24px 60px -22px rgba(16,64,166,0.32)",
               }}
               aria-label="Play AIPOWER company introduction video"
             >
