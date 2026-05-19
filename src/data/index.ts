@@ -49,7 +49,8 @@ export const ABOUT_DROPDOWN = [
 export const NAV_ITEMS = [
   { label: "About", id: "about", dropdown: ABOUT_DROPDOWN },
   { label: "Product", id: "product" },
-  { label: "Team", id: "team" },
+  { label: "Industries", id: "industries", href: "/industries" },
+  { label: "Case Studies", id: "case-studies", href: "/case-studies" },
   { label: "Careers", id: "careers", href: "/careers" },
   { label: "News", id: "news", href: "/news" },
 ];
