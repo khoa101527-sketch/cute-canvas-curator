@@ -13,6 +13,23 @@ const PRODUCT_DROPDOWN: { key: ProductGroupKey; label: string }[] = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const [lang, setLang] = useState<"vi" | "ja" | "en">("vi");
+  const langRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const LANGS: { code: "vi" | "ja" | "en"; label: string; flag: string }[] = [
+    { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
+    { code: "ja", label: "日本語", flag: "🇯🇵" },
+    { code: "en", label: "English", flag: "🇬🇧" },
+  ];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
