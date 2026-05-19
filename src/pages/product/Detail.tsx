@@ -173,182 +173,99 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* [3] Problem → Solution */}
-      <section className="px-6 lg:px-8 py-20" style={{ background: "#ffffff" }}>
-        <div className="max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Problems */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,#dc2626,#f97316)" }}>
-                <Target size={18} />
-              </div>
-              <div>
-                <div className="text-[11px] tracking-[0.2em] uppercase font-semibold text-slate-500">Vấn đề</div>
-                <div className="text-[20px] font-bold" style={{ color: "#0b1736" }}>Giải quyết vấn đề gì?</div>
-              </div>
+      {/* Editorial body — faithful to AIPOWER capability slide */}
+      <article className="bg-white">
+        <div className="max-w-[860px] mx-auto px-6 lg:px-8 py-20 lg:py-24 space-y-16 lg:space-y-20">
+
+          {/* 1. Giải quyết vấn đề gì? */}
+          <section>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>01 · Vấn đề</span>
             </div>
-            <div className="space-y-3">
+            <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
+              Giải quyết vấn đề gì?
+            </h2>
+            <ul className="mt-7 space-y-4">
               {product.problems.map((p, i) => (
-                <div key={i} className="rounded-2xl border border-slate-200 bg-white p-5 flex items-start gap-3.5 transition-all hover:shadow-[0_18px_40px_-22px_rgba(220,38,38,0.3)]">
-                  <span className="w-7 h-7 rounded-lg grid place-items-center shrink-0 text-[12px] font-bold text-white" style={{ background: "linear-gradient(135deg,#dc2626,#f97316)" }}>
-                    {i + 1}
-                  </span>
-                  <p className="text-[14.5px] text-slate-600 leading-[1.6]">{p}</p>
-                </div>
+                <li key={i} className="flex gap-4 text-[16.5px] leading-[1.75] text-slate-700">
+                  <span className="mt-[10px] w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#1040A6" }} />
+                  <span>{p}</span>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </section>
 
-          {/* Solution */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}>
-                <Sparkles size={18} />
-              </div>
-              <div>
-                <div className="text-[11px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>Giải pháp</div>
-                <div className="text-[20px] font-bold" style={{ color: "#0b1736" }}>AIPOWER giải quyết như thế nào</div>
-              </div>
-            </div>
-            <div className="rounded-2xl p-6 text-white relative overflow-hidden" style={{ background: "linear-gradient(140deg,#0f1c4d 0%,#16306c 60%,#1B8FD2 130%)" }}>
-              <div className="absolute -top-16 -right-12 w-48 h-48 rounded-full opacity-40 blur-3xl" style={{ background: product.accent }} />
-              <p className="relative text-[15px] leading-[1.7] text-white/90">{product.role}</p>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {product.features.slice(0, 4).map((f, i) => (
-                <div key={i} className="rounded-xl bg-slate-50 border border-slate-100 p-3.5 flex items-start gap-2.5">
-                  <CheckCircle2 size={16} className="shrink-0 mt-0.5" style={{ color: "#1040A6" }} />
-                  <span className="text-[13px] font-medium text-slate-700 leading-[1.45]">{f}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* [4] Core Modules / Capabilities */}
-      <section className="px-6 lg:px-8 py-20" style={{ background: "linear-gradient(180deg,#f7faff 0%, #ffffff 100%)" }}>
-        <div className="max-w-[1180px] mx-auto">
-          <div className="text-center max-w-[680px] mx-auto mb-12">
-            <span className="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Tính năng cốt lõi
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#1040A6]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(26px,2.8vw,38px)", color: "#0b1736" }}>
-              Modules & Capabilities
-            </h2>
-            <p className="mt-3 text-[15px] text-slate-500">Bộ tính năng được thiết kế sẵn cho doanh nghiệp triển khai nhanh.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {product.features.map((f, i) => {
-              const Icon = MODULE_ICONS[i % MODULE_ICONS.length];
-              const [title, ...rest] = f.split(/:\s|\s—\s|\s-\s/);
-              const desc = rest.join(": ").trim();
-              return (
-                <div key={i} className="rounded-2xl bg-white border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_-22px_rgba(16,64,166,0.28)]">
-                  <div className="w-11 h-11 rounded-xl grid place-items-center text-white mb-4" style={{ background: product.accent }}>
-                    <Icon size={18} />
-                  </div>
-                  <div className="text-[15.5px] font-bold leading-[1.4]" style={{ color: "#0b1736" }}>{title}</div>
-                  {desc && (
-                    <p className="mt-2 text-[13.5px] text-slate-500 leading-[1.6]">{desc}</p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* [5] Target Customers + Use Cases */}
-      <section className="px-6 lg:px-8 py-20" style={{ background: "#ffffff" }}>
-        <div className="max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="rounded-3xl p-8 border border-slate-200 bg-gradient-to-br from-white to-slate-50">
+          {/* 2. Vai trò */}
+          <section>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,#1B8FD2,#5ec0ff)" }}>
-                <Users size={18} />
-              </div>
-              <div>
-                <div className="text-[11px] tracking-[0.2em] uppercase font-semibold text-slate-500">Khách hàng</div>
-                <div className="text-[20px] font-bold" style={{ color: "#0b1736" }}>Đối tượng phù hợp</div>
-              </div>
+              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>02 · Vai trò</span>
             </div>
-            <p className="text-[14.5px] text-slate-600 leading-[1.7]">{product.customers}</p>
-          </div>
-
-          <div className="rounded-3xl p-8 border border-slate-200 bg-gradient-to-br from-white to-blue-50/40">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-xl grid place-items-center text-white" style={{ background: "linear-gradient(135deg,#1040A6,#7a5cff)" }}>
-                <Building2 size={18} />
-              </div>
-              <div>
-                <div className="text-[11px] tracking-[0.2em] uppercase font-semibold text-slate-500">Ngành & Use Case</div>
-                <div className="text-[20px] font-bold" style={{ color: "#0b1736" }}>Lĩnh vực ứng dụng</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {customerChips.map((c, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold border"
-                  style={{
-                    background: "rgba(16,64,166,0.05)",
-                    borderColor: "rgba(16,64,166,0.18)",
-                    color: "#1040A6",
-                  }}
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* [6] Results / Metrics — dark section */}
-      <section data-theme="dark" className="px-6 lg:px-8 py-24 text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(900px 600px at 80% 30%, rgba(48,110,242,0.45) 0%, transparent 60%)," +
-              "radial-gradient(700px 500px at 15% 80%, rgba(122,92,255,0.25), transparent 70%)," +
-              "linear-gradient(180deg,#0a0c24 0%, #10112a 60%, #1a1f4a 100%)",
-          }}
-        />
-        <div className="max-w-[1180px] mx-auto">
-          <div className="text-center max-w-[680px] mx-auto mb-12">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.18em] uppercase"
-              style={{ background: "rgba(94,140,255,0.12)", border: "1px solid rgba(94,140,255,0.3)", color: "#9bd6ff" }}>
-              <TrendingUp size={12} /> Kết quả đo lường
-            </span>
-            <h2 className="mt-4 font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3vw,42px)" }}>
-              Tác động thực tế từ khách hàng
+            <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
+              Vai trò
             </h2>
-            <p className="mt-3 text-[15px] text-white/60">KPI và business outcomes đo lường được sau khi triển khai {product.name}.</p>
-          </div>
+            <p className="mt-7 text-[17px] leading-[1.8] text-slate-700">
+              {product.role}
+            </p>
+            {product.features.length > 0 && (
+              <ul className="mt-6 space-y-3 border-l-2 pl-6" style={{ borderColor: "rgba(16,64,166,0.18)" }}>
+                {product.features.map((f, i) => (
+                  <li key={i} className="text-[15.5px] leading-[1.7] text-slate-700">
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {product.results.map((r, i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-7 relative overflow-hidden"
-                style={{
-                  background: "linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  backdropFilter: "blur(20px)",
-                }}
-              >
-                <div className="w-10 h-10 rounded-xl grid place-items-center mb-4" style={{ background: "rgba(155,214,255,0.15)", border: "1px solid rgba(155,214,255,0.25)" }}>
-                  <CheckCircle2 size={16} className="text-[#9bd6ff]" />
-                </div>
-                <div className="text-[14.5px] text-white/85 leading-[1.6]">{r}</div>
-              </div>
-            ))}
-          </div>
+          {/* 3. Khách hàng */}
+          <section>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>03 · Khách hàng</span>
+            </div>
+            <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
+              Khách hàng
+            </h2>
+            <p className="mt-7 text-[17px] leading-[1.8] text-slate-700">
+              {product.customers}
+            </p>
+            {customerChips.length > 1 && (
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                {customerChips.map((c, i) => (
+                  <li key={i} className="flex gap-3 text-[15.5px] leading-[1.6] text-slate-700">
+                    <span className="mt-[10px] w-1 h-1 rounded-full shrink-0" style={{ background: "#1B8FD2" }} />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          {/* 4. Kết quả điển hình */}
+          <section>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }} />
+              <span className="text-[12px] tracking-[0.22em] uppercase font-semibold" style={{ color: "#1040A6" }}>04 · Kết quả</span>
+            </div>
+            <h2 className="font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(28px,3.2vw,40px)", color: "#0b1736" }}>
+              Kết quả điển hình
+            </h2>
+            <ul className="mt-7 space-y-4">
+              {product.results.map((r, i) => (
+                <li key={i} className="flex gap-4 text-[16.5px] leading-[1.75] text-slate-700">
+                  <span className="mt-[10px] w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#1040A6" }} />
+                  <span>{r}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
         </div>
-      </section>
+      </article>
+
+
 
       {/* [8] Related products */}
       {related.length > 0 && (
