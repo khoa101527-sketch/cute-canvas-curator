@@ -147,6 +147,30 @@ export default function Hero() {
                     draggable={false}
                   />
                 </div>
+                {/* Per-poster reflection */}
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 top-full overflow-hidden pointer-events-none"
+                  style={{
+                    height: "55%",
+                    transform: "scaleY(-1)",
+                    transformOrigin: "top",
+                    opacity: isCenter ? 0.32 : 0.18,
+                    filter: "blur(10px) saturate(0.9)",
+                    maskImage:
+                      "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 50%, transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 50%, transparent 100%)",
+                  }}
+                >
+                  <img
+                    src={p.src}
+                    alt=""
+                    className="w-full h-full object-cover rounded-2xl"
+                    draggable={false}
+                  />
+                </div>
+
               </button>
             );
           })}
