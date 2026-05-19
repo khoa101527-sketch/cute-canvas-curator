@@ -28,7 +28,7 @@ export default function AboutUs() {
   }, [open]);
 
   return (
-    <section id="about-us" className="relative bg-white pt-24 pb-16 px-6 lg:px-8 overflow-hidden">
+    <section id="about-us" className="relative bg-white pt-24 pb-28 px-6 lg:px-8 overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{
@@ -38,18 +38,25 @@ export default function AboutUs() {
         }}
       />
 
-      <div className="relative max-w-[1200px] mx-auto">
-        {/* Section title */}
-        <h2
-          className="font-bold tracking-[-0.025em] leading-[1.1] text-slate-900"
-          style={{ fontSize: "clamp(30px,3.6vw,44px)" }}
-        >
-          Về chúng tôi
-        </h2>
-        <div
-          className="mt-2 h-[3px] w-[56px] rounded-full"
-          style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }}
-        />
+      <div className="relative max-w-[1280px] mx-auto">
+        {/* Section title — matches Philosophy h2 style */}
+        <div className="text-left">
+          <h2
+            className="font-bold tracking-[-0.025em] leading-[1.08] text-slate-900"
+            style={{ fontSize: "clamp(34px,4.6vw,62px)" }}
+          >
+            Về{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg,#1040A6 0%,#1B8FD2 50%,#7a5cff 100%)",
+              }}
+            >
+              chúng tôi.
+            </span>
+          </h2>
+        </div>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-start">
           {/* Left — content */}
@@ -58,14 +65,7 @@ export default function AboutUs() {
               className="font-semibold tracking-[-0.01em] leading-[1.35] text-slate-800"
               style={{ fontSize: "clamp(18px,1.6vw,22px)" }}
             >
-              Building Trust.{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(90deg,#1040A6 0%,#1B8FD2 55%,#7a5cff 100%)" }}
-              >
-                Driving Innovation.
-              </span>{" "}
-              Contributing to Society.
+              Building Trust. Driving Innovation. Contributing to Society.
             </p>
 
             <p className="mt-5 text-[16px] leading-[1.75] text-slate-600 max-w-[620px]">
@@ -112,7 +112,6 @@ export default function AboutUs() {
                 alt="AIP Company Introduction"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              {/* gradient overlay */}
               <div
                 className="absolute inset-0"
                 style={{
@@ -120,7 +119,6 @@ export default function AboutUs() {
                     "linear-gradient(180deg, rgba(10,20,50,0) 0%, rgba(10,20,50,0.55) 100%)",
                 }}
               />
-              {/* play button */}
               <div className="absolute inset-0 grid place-items-center">
                 <div
                   className="w-[84px] h-[84px] rounded-full grid place-items-center text-white transition-transform duration-300 group-hover:scale-110"
@@ -140,21 +138,29 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Stats row — full width under both columns */}
-        <div className="mt-14 pt-10 border-t border-slate-200/70 grid grid-cols-3 sm:grid-cols-6 gap-4">
-          {STATS.map((s) => (
-            <div key={s.lbl} className="text-left">
-              <div
-                className="text-[24px] sm:text-[30px] font-bold bg-clip-text text-transparent leading-none"
-                style={{ backgroundImage: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}
-              >
-                {s.num}
+        {/* Stats card — unified container */}
+        <div
+          className="mt-14 rounded-[24px] bg-white border border-slate-200/80 px-6 py-10 sm:px-10"
+          style={{
+            boxShadow:
+              "0 1px 0 rgba(255,255,255,0.6) inset, 0 10px 30px -12px rgba(15,30,80,0.10)",
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4">
+            {STATS.map((s) => (
+              <div key={s.lbl} className="flex flex-col items-center justify-center text-center">
+                <div
+                  className="text-[28px] sm:text-[34px] font-bold bg-clip-text text-transparent leading-none"
+                  style={{ backgroundImage: "linear-gradient(135deg,#1040A6,#1B8FD2)" }}
+                >
+                  {s.num}
+                </div>
+                <div className="mt-2 text-[12px] sm:text-[13px] leading-[1.35] text-slate-500 font-medium">
+                  {s.lbl}
+                </div>
               </div>
-              <div className="mt-2 text-[11.5px] sm:text-[12px] leading-[1.35] text-slate-500 font-medium">
-                {s.lbl}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

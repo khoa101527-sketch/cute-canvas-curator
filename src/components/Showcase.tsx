@@ -3,7 +3,7 @@ import { SHOWCASE_FEATURE, SHOWCASE_CARDS } from "@/data";
 
 export default function Showcase() {
   return (
-    <section className="relative py-24 px-6 lg:px-8 overflow-hidden bg-[#f7faff]">
+    <section className="relative py-24 px-6 lg:px-8 overflow-hidden bg-white">
       {/* Ambient blurs */}
       <div
         className="pointer-events-none absolute top-1/3 -left-20 w-[480px] h-[480px] rounded-full opacity-60 blur-3xl"
