@@ -321,7 +321,7 @@ export default function Header() {
                   </button>
                   {hasDropdown && subOpen && (
                     <div className="bg-slate-50/60 pb-2">
-                      {(isProduct ? PRODUCT_DROPDOWN.map((g) => ({ label: PRODUCT_GROUP_META[g.key].title, href: `/products/${g.key}` })) : (item.dropdown ?? [])).map((d) => (
+                      {(isProduct ? PRODUCT_GROUP_KEYS.map((key) => ({ label: PRODUCT_GROUP_META[key].title, href: `/products/${key}` })) : (item.dropdown ?? [])).map((d) => (
                         <button
                           key={d.label}
                           type="button"
