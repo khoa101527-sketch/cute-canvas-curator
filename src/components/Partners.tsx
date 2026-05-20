@@ -41,7 +41,7 @@ export default function Partners() {
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
           {/* Left — title + description */}
           <div className="lg:sticky lg:top-32">            <h2
-              className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900"
+              className="font-bold tracking-[-0.02em] leading-[1.1] text-slate-900"
               style={{ fontSize: "clamp(34px,4vw,52px)" }}
             >
               Khách hàng{" "}

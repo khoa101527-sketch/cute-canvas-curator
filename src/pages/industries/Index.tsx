@@ -114,7 +114,7 @@ export default function IndustriesPage() {
               "radial-gradient(1px 1px at 32% 78%, rgba(255,255,255,0.4) 50%, transparent 60%)",
           }}
         />
-        <div className="relative max-w-[1100px] mx-auto text-center">          <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
+        <div className="relative max-w-[1100px] mx-auto text-center">          <h1 className="font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
             AI solutions across every industry
           </h1>
           <p className="mt-7 mx-auto max-w-[820px] text-[17px] leading-[1.75] text-white/75">
@@ -128,7 +128,7 @@ export default function IndustriesPage() {
       <main className="relative bg-white">
         <section className="relative pt-24 pb-24 px-6 lg:px-8">
           <div className="max-w-[1280px] mx-auto">
-            <div className="text-center max-w-[760px] mx-auto">              <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+            <div className="text-center max-w-[760px] mx-auto">              <h2 className="font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
                 Industries we empower
               </h2>
               <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">

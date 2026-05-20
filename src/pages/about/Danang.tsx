@@ -57,7 +57,7 @@ export default function AboutDanang() {
       {/* Strategic focus */}
       <section className="relative py-20 px-6 lg:px-8" style={{ background: "linear-gradient(180deg,#ffffff 0%, #f4f8ff 100%)" }}>
         <div className="max-w-[1280px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               Trung tâm R&D — AI · Web · Mobile App
             </h2>
             <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">

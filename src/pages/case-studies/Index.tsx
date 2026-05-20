@@ -71,7 +71,7 @@ export default function CaseStudiesPage() {
               "radial-gradient(1px 1px at 32% 78%, rgba(255,255,255,0.4) 50%, transparent 60%)",
           }}
         />
-        <div className="relative max-w-[1100px] mx-auto text-center">          <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
+        <div className="relative max-w-[1100px] mx-auto text-center">          <h1 className="font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
             More than 200 successful projects
           </h1>
           <p className="mt-7 mx-auto max-w-[820px] text-[17px] leading-[1.75] text-white/75">

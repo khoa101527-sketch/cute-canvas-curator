@@ -43,7 +43,7 @@ export default function AboutLayout({
         />
 
         <div className="relative max-w-[1100px] mx-auto text-center">          <h1
-            className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white"
+            className="font-bold tracking-[-0.025em] leading-[1.06] text-white"
             style={{ fontSize: "clamp(40px,5.4vw,72px)" }}
           >
             {title}

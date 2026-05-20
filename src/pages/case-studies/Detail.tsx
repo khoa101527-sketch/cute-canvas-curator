@@ -47,7 +47,7 @@ export default function CaseStudyDetail() {
             <ArrowLeft size={15} /> All Case Studies
           </Link>
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">              <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(34px,4.6vw,58px)" }}>
+            <div className="lg:col-span-7">              <h1 className="font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(34px,4.6vw,58px)" }}>
                 {c.title}
               </h1>
               {c.description && (
