@@ -1,14 +1,38 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronDown, Menu, X, Globe, Check } from "lucide-react";
+import { ChevronDown, Menu, X, Globe, Check, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
-import { PRODUCT_GROUP_META, type ProductGroupKey } from "@/data/products";
+import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, PRODUCTS, type ProductGroupKey } from "@/data/products";
 
-const PRODUCT_DROPDOWN: { key: ProductGroupKey; label: string }[] = [
-  { key: "platform", label: "Nền tảng & Vận hành thông minh" },
-  { key: "management", label: "Quản trị" },
-  { key: "training", label: "Đào tạo" },
-];
+const PRODUCT_GROUP_KEYS: ProductGroupKey[] = ["platform", "management", "training"];
+
+// Subtitle clamped to 2 lines; on hover shows full text only when truncated.
+function ClampedSubtitle({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const [truncated, setTruncated] = useState(false);
+  const [hover, setHover] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    setTruncated(el.scrollHeight - el.clientHeight > 1);
+  }, [text]);
+  return (
+    <span className="relative block" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <span
+        ref={ref}
+        className="block text-[12.5px] leading-[1.45] text-slate-500 overflow-hidden"
+        style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}
+      >
+        {text}
+      </span>
+      {truncated && hover && (
+        <span className="absolute left-0 top-full mt-1 z-[60] max-w-[280px] rounded-lg bg-slate-900 text-white text-[12px] leading-[1.5] p-2.5 shadow-xl whitespace-normal">
+          {text}
+        </span>
+      )}
+    </span>
+  );
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
