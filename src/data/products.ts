@@ -278,7 +278,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "oraspa",
     name: "ORASPA",
-    short: "Quản lý Spa & Nha khoa – tinh gọn vận hành, nâng tầm dịch vụ.",
+    short: "Quản lý Spa và Nha khoa – Tinh gọn vận hành, nâng tầm dịch vụ.",
     tagline: "Phần mềm quản lý Spa và Nha khoa thông minh tích hợp AI",
     group: "management",
     icon: Sparkles,
