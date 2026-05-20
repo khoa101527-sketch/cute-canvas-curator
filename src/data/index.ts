@@ -38,17 +38,17 @@ export const SHOWCASE_CARDS = [
   },
 ];
 
-export const ABOUT_DROPDOWN = [
-  { label: "About us", href: "/about" },
-  { label: "AIPOWER JAPAN", href: "/about/japan" },
-  { label: "AIPOWER AUSTRALIA", href: "/about/australia" },
-  { label: "AIPOWER USA", href: "/about/usa" },
-  { label: "AIPOWER DANANG", href: "/about/danang" },
+export const ABOUT_DROPDOWN: { label: string; href: string; subtitle?: string }[] = [
+  { label: "About us", href: "/about", subtitle: "Tổng quan AIPOWER — Tầm nhìn, sứ mệnh & giá trị cốt lõi" },
+  { label: "AIPOWER JAPAN", href: "/about/japan", subtitle: "Tokyo, Japan" },
+  { label: "AIPOWER AUSTRALIA", href: "/about/australia", subtitle: "Sydney, Australia" },
+  { label: "AIPOWER USA", href: "/about/usa", subtitle: "California, United States" },
+  { label: "AIPOWER DANANG", href: "/about/danang", subtitle: "Đà Nẵng, Việt Nam" },
 ];
 
 export const NAV_ITEMS = [
-  { label: "About", id: "about", dropdown: ABOUT_DROPDOWN },
   { label: "Product", id: "product" },
+  { label: "About", id: "about", dropdown: ABOUT_DROPDOWN },
   { label: "Industries", id: "industries", href: "/industries" },
   { label: "Case Studies", id: "case-studies", href: "/case-studies" },
   { label: "Careers", id: "careers", href: "/careers" },
