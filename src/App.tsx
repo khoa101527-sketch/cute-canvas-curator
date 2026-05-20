@@ -8,6 +8,7 @@ import Index from "./pages/home/Index";
 import NotFound from "./pages/not-found/Index";
 import ProductDetail from "./pages/product/Detail";
 import ProductGroup from "./pages/product/Group";
+import ProductsLanding from "./pages/product/Index";
 import AboutUs from "./pages/about/Index";
 import AboutJapan from "./pages/about/Japan";
 import AboutAustralia from "./pages/about/Australia";
