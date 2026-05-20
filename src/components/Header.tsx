@@ -40,6 +40,17 @@ export default function Header() {
   const [langOpen, setLangOpen] = useState(false);
   const [lang, setLang] = useState<"vi" | "ja" | "en">("vi");
   const langRef = useRef<HTMLDivElement | null>(null);
+  const closeTimer = useRef<number | null>(null);
+  const scheduleClose = useCallback(() => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setOpenMenu(null), 140);
+  }, []);
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
