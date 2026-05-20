@@ -74,7 +74,7 @@ export default function Philosophy() {
 
                 {/* Subtitle — centered uppercase */}
                 <div
-                  className="mt-2 text-[11.5px] font-semibold tracking-[0.18em] uppercase"
+                  className="mt-2 text-[11.5px] font-bold tracking-[0.18em] uppercase"
                   style={{ color: "#1B8FD2" }}
                 >
                   {p.keyword}

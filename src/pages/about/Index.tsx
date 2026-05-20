@@ -233,9 +233,24 @@ export default function AboutUs() {
                 const cardOnLeft = i % 2 === 0; // item đầu card bên trái → năm bên phải
                 return (
                   <li key={m.year} className="relative">
-                    {/* Dot — always centered on the line */}
+                    {/* Dot — mobile: aligned with year label */}
                     <span
-                      className="absolute top-6 left-5 lg:left-1/2 -translate-x-1/2 z-10 grid place-items-center"
+                      className="lg:hidden absolute left-5 -translate-x-1/2 z-10 grid place-items-center"
+                      style={{ top: "18px" }}
+                      aria-hidden
+                    >
+                      <span
+                        className="w-3 h-3 rounded-full block"
+                        style={{
+                          background: "#1040A6",
+                          boxShadow:
+                            "0 0 0 4px #ffffff, 0 0 0 7px rgba(27,143,210,0.25)",
+                        }}
+                      />
+                    </span>
+                    {/* Dot — desktop: vertically centered on row */}
+                    <span
+                      className="hidden lg:grid absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 place-items-center"
                       aria-hidden
                     >
                       <span
