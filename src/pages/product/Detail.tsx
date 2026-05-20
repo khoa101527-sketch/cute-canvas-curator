@@ -121,12 +121,15 @@ export default function ProductDetail() {
             {/* RIGHT — floating composition */}
             <div className="relative">
               {PRODUCT_BANNERS[product.slug] ? (
-                <div
-                  className="relative mx-auto rounded-[28px] overflow-hidden bg-white border border-slate-100"
+                <button
+                  type="button"
+                  onClick={() => setLightbox(true)}
+                  className="relative block w-full rounded-[28px] overflow-hidden bg-white border border-slate-100 cursor-zoom-in transition-transform hover:scale-[1.01]"
                   style={{
                     boxShadow: "0 40px 90px -30px rgba(16,64,166,0.45)",
                     aspectRatio: "16/9",
                   }}
+                  aria-label={`Xem ảnh lớn ${product.name}`}
                 >
                   <img
                     src={PRODUCT_BANNERS[product.slug]}
@@ -134,7 +137,7 @@ export default function ProductDetail() {
                     className="w-full h-full object-contain"
                     draggable={false}
                   />
-                </div>
+                </button>
               ) : (
                 <div
                   className="relative mx-auto rounded-[28px] p-8 overflow-hidden"
