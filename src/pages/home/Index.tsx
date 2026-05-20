@@ -6,6 +6,7 @@ import Showcase from "@/components/Showcase";
 import Products from "@/components/Products";
 import Process from "@/components/Process";
 import TechPartners from "@/components/TechPartners";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import Technologies from "@/components/Technologies";
 import Footer from "@/components/Footer";
 
