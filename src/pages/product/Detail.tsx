@@ -85,7 +85,7 @@ export default function ProductDetail() {
             <span className="text-slate-900 font-medium">{product.name}</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.25fr] gap-12 lg:gap-14 items-center">
             {/* LEFT */}
             <div>
               <div className="h-16 md:h-20 mb-6 flex items-center">
