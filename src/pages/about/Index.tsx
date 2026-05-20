@@ -144,13 +144,7 @@ export default function AboutUs() {
       {/* Mission · Vision · Culture */}
       <section className="relative py-20 px-6 lg:px-8" style={{ background: "linear-gradient(180deg,#ffffff 0%, #f4f8ff 100%)" }}>
         <div className="max-w-[1280px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Mission · Vision · Culture
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#5ec0ff]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               Đổi mới và thích ứng — chìa khoá kiến tạo giải pháp AI tiên tiến
             </h2>
             <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">
@@ -183,13 +177,7 @@ export default function AboutUs() {
       {/* Core values */}
       <section className="relative py-20 px-6 lg:px-8 bg-white">
         <div className="max-w-[1280px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Core Values
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#5ec0ff]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               5 giá trị cốt lõi của AIPOWER
             </h2>
             <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">
@@ -220,13 +208,7 @@ export default function AboutUs() {
       {/* Milestones — modern alternating vertical timeline */}
       <section className="relative py-20 px-6 lg:px-8" style={{ background: "linear-gradient(180deg,#f7faff 0%, #ffffff 100%)" }}>
         <div className="max-w-[1180px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Milestones
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#5ec0ff]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               Hành trình 7+ năm phát triển
             </h2>
             <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">
@@ -333,13 +315,7 @@ export default function AboutUs() {
       {/* Offices — map embed + active office locator */}
       <section className="relative py-20 px-6 lg:px-8 bg-white">
         <div className="max-w-[1280px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Offices
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#5ec0ff]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               Hệ thống văn phòng AIPOWER toàn cầu
             </h2>
             <p className="mt-4 text-[16px] text-slate-500 leading-[1.7]">

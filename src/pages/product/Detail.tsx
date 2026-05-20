@@ -288,12 +288,7 @@ export default function ProductDetail() {
         <section className="px-6 lg:px-8 py-24" style={{ background: "#ffffff" }}>
           <div className="max-w-[1180px] mx-auto">
             <div className="flex items-end justify-between gap-6 mb-10">
-              <div>
-                <span className="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-                  <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-                  Cùng nhóm giải pháp
-                </span>
-                <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(24px,2.4vw,32px)", color: "#0b1736" }}>
+              <div>                <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.15]" style={{ fontSize: "clamp(24px,2.4vw,32px)", color: "#0b1736" }}>
                   Sản phẩm liên quan
                 </h2>
               </div>

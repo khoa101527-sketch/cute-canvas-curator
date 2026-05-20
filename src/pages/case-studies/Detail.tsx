@@ -47,11 +47,7 @@ export default function CaseStudyDetail() {
             <ArrowLeft size={15} /> All Case Studies
           </Link>
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11.5px] tracking-[0.16em] uppercase font-semibold text-white/85" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.14)" }}>
-                <Tag size={12} /> {c.category}
-              </span>
-              <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(34px,4.6vw,58px)" }}>
+            <div className="lg:col-span-7">              <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(34px,4.6vw,58px)" }}>
                 {c.title}
               </h1>
               {c.description && (
