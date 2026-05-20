@@ -60,7 +60,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "lumina",
     name: "Lumina",
-    short: "Nền tảng AI cho toàn doanh nghiệp – Lãnh đạo quyết định đúng, nhân viên làm nhanh.",
+    short: "Nền tảng AI cho toàn doanh nghiệp – Lãnh đạo quyết định đúng, nhân viên làm nhanh, AI agents làm tự động.",
     tagline: "One AI Platform for the Entire Enterprise",
     group: "platform",
     icon: Brain,
