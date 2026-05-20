@@ -250,7 +250,14 @@ export default function AboutUs() {
 
                     {/* Mobile (single column): card on right of line */}
                     <div className="lg:hidden pl-14">
-                      <div className="text-[12px] tracking-[0.18em] uppercase font-bold mb-2" style={{ color: "#1040A6" }}>
+                      <div
+                        className="font-bold leading-none mb-3 bg-clip-text text-transparent inline-block"
+                        style={{
+                          fontSize: "clamp(26px,7vw,32px)",
+                          letterSpacing: "-0.01em",
+                          backgroundImage: "linear-gradient(135deg,#1040A6 0%,#1B8FD2 60%,#5ec0ff 100%)",
+                        }}
+                      >
                         {m.year}
                       </div>
                       <div
