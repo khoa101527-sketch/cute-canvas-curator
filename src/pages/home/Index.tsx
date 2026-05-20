@@ -20,6 +20,7 @@ export default function HomePage() {
       <Showcase />
       <Products />
       <Process />
+      <FeaturedProducts />
       <TechPartners />
       <Technologies />
       <Footer />
