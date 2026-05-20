@@ -24,6 +24,15 @@ const PRODUCT_BANNERS: Record<string, string> = {
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const product = slug ? findProductBySlug(slug) : undefined;
+  const [lightbox, setLightbox] = useState(false);
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [lightbox]);
 
   if (!product) {
     return (
