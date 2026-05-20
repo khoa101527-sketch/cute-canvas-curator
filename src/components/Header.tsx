@@ -209,25 +209,18 @@ export default function Header() {
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() => hasDropdown && setOpenMenu(item.label)}
-              onMouseLeave={() => setOpenMenu(null)}
+              onMouseEnter={() => { if (hasDropdown) { cancelClose(); setOpenMenu(item.label); } }}
+              onMouseLeave={() => { if (hasDropdown) scheduleClose(); }}
             >
               <button
                 type="button"
-                // Plain hover state only — no scroll/jump behavior for non-dropdown items.
                 className="flex items-center gap-1 py-2 transition-colors relative group"
                 style={{ color: isActive ? textHoverColor : "inherit", fontWeight: isActive ? 600 : undefined }}
                 onClick={() => {
-                  if (itemHref && !hasDropdown) {
-                    navigate(itemHref);
-                  }
+                  if (itemHref && !hasDropdown) navigate(itemHref);
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = textHoverColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isActive ? textHoverColor : "inherit";
-                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = textHoverColor; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = isActive ? textHoverColor : "inherit"; }}
               >
                 {item.label}
                 {hasDropdown && (
@@ -242,49 +235,6 @@ export default function Header() {
                   style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }}
                 />
               </button>
-
-              {/* About dropdown */}
-              {item.dropdown && openMenu === item.label && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[240px] z-50">
-                  <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden py-2">
-                    {item.dropdown.map((d) => (
-                      <button
-                        type="button"
-                        key={d.label}
-                        onClick={() => {
-                          if (d.href && d.href.startsWith("/")) {
-                            navigate(d.href);
-                          }
-                          setOpenMenu(null);
-                        }}
-                        className="block w-full text-left px-5 py-2.5 text-[14px] text-slate-700 font-medium hover:bg-blue-50/80 hover:text-[#1040A6] transition-colors"
-                      >
-                        {d.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Product dropdown — same style as About */}
-              {isProduct && openMenu === item.label && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[300px] z-50">
-                  <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden py-2">
-                    {PRODUCT_DROPDOWN.map((g) => (
-                      <button
-                        key={g.key}
-                        onClick={() => {
-                          navigate(`/products/${g.key}`);
-                          setOpenMenu(null);
-                        }}
-                        className="block w-full text-left px-5 py-2.5 text-[14px] text-slate-700 font-medium hover:bg-blue-50/80 hover:text-[#1040A6] transition-colors"
-                      >
-                        {PRODUCT_GROUP_META[g.key].title}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
