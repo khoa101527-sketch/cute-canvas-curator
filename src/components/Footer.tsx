@@ -20,8 +20,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Brand */}
           <div className="md:col-span-5">
-            <img src="/images/aipower-logo.svg" alt="AIPOWER" className="h-11 w-auto brightness-110" />
-            <p className="mt-5 text-[14.5px] leading-[1.7] text-white/65 max-w-[360px]">
+            <img src="/images/aipower-logo.svg" alt="AIPOWER" className="h-14 md:h-16 w-auto brightness-110" />
+            <p className="mt-4 text-[14.5px] leading-[1.7] text-white/65 max-w-[360px]">
               Xây dựng các giải pháp AI giúp doanh nghiệp tự động hoá, tối ưu và tăng trưởng trong kỷ nguyên số.
             </p>
             <div className="mt-6 flex gap-2.5">
