@@ -366,7 +366,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiacademy",
     name: "AIAcademy",
-    short: "Học AI thông minh – lộ trình cá nhân hoá, AI agents hỗ trợ.",
+    short: "Nền tảng micro-learning – Học tập linh hoạt mỗi ngày với AI Agent.",
     tagline: "Nền tảng đào tạo AI thực chiến",
     group: "training",
     icon: GraduationCap,
