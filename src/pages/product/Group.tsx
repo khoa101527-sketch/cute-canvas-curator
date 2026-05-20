@@ -255,7 +255,11 @@ export default function ProductGroup() {
                       <img
                         src={getProductLogo(p.slug)}
                         alt={p.name}
-                        className="object-contain w-auto h-auto max-w-[78%] max-h-[200px]"
+                        className={`object-contain w-auto h-auto ${
+                          p.slug === "aicamera"
+                            ? "max-w-[52%] max-h-[140px]"
+                            : "max-w-[78%] max-h-[200px]"
+                        }`}
                         style={{
                           filter:
                             "drop-shadow(0 18px 30px rgba(0,0,0,0.45)) drop-shadow(0 0 18px rgba(255,255,255,0.08))",
