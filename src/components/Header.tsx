@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronDown, Menu, X, Globe, Check, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
-import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, PRODUCTS, type ProductGroupKey } from "@/data/products";
+import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, type ProductGroupKey } from "@/data/products";
 
 const PRODUCT_GROUP_KEYS: ProductGroupKey[] = ["platform", "management", "training"];
 
