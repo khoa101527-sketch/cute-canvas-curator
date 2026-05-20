@@ -356,6 +356,32 @@ export default function ProductDetail() {
       </section>
 
       <Footer />
+
+      {/* Lightbox */}
+      {lightbox && PRODUCT_BANNERS[product.slug] && (
+        <div
+          className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-8 animate-[fade-in_180ms_ease-out]"
+          style={{ background: "rgba(0,0,0,0.78)" }}
+          onClick={() => setLightbox(false)}
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLightbox(false); }}
+            aria-label="Đóng"
+            className="absolute top-5 right-5 w-11 h-11 grid place-items-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={PRODUCT_BANNERS[product.slug]}
+            alt={product.name}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-[95vw] max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+            style={{ animation: "scale-in 220ms ease-out" }}
+            draggable={false}
+          />
+        </div>
+      )}
     </div>
   );
 }
