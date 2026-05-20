@@ -336,7 +336,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "1shop",
     name: "1Shop",
-    short: "Quản lý bán hàng đa kênh – tất cả trong một nền tảng.",
+    short: "Nền tảng thương mại điện tử đa nhà bán hàng – Tích hợp tư vấn, tiếp thị và quản trị trong một nền tảng.",
     tagline: "Phần mềm quản lý bán hàng đa sàn TMĐT",
     group: "management",
     icon: ShoppingBag,
