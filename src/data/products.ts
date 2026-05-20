@@ -85,7 +85,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiautomate",
     name: "AIAutomate",
-    short: "Tự động hoá quy trình – thay thủ công, tăng hiệu suất 24/7.",
+    short: "Tự động hóa quy trình – Thay thủ công, tăng hiệu suất.",
     tagline: "Giải pháp Tự động hoá Quy trình Vận hành Doanh nghiệp",
     group: "platform",
     icon: Bot,
