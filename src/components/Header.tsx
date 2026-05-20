@@ -217,6 +217,7 @@ export default function Header() {
                 className="flex items-center gap-1 py-2 transition-colors relative group"
                 style={{ color: isActive ? textHoverColor : "inherit", fontWeight: isActive ? 600 : undefined }}
                 onClick={() => {
+                  if (isProduct) { navigate("/products"); setOpenMenu(null); return; }
                   if (itemHref && !hasDropdown) navigate(itemHref);
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = textHoverColor; }}
