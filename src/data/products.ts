@@ -251,7 +251,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "dealer-pro",
     name: "Dealer Pro",
-    short: "Quản lý đại lý ô tô – đồng bộ, chuyên sâu, hiệu quả.",
+    short: "Quản lý đại lý ô tô – Đồng bộ, chuyên sâu, hiệu quả.",
     tagline: "Phần mềm quản lý đại lý ô tô thông minh tích hợp AI",
     group: "management",
     icon: Car,
