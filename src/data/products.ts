@@ -112,7 +112,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aicamera",
     name: "AICamera",
-    short: "Camera AI – tự động giám sát, cảnh báo tức thì 24/7.",
+    short: "Camera AI – Tự động giám sát, cảnh báo tức thì 24/7.",
     tagline: "Camera AI giám sát & cảnh báo tuân thủ tức thì",
     group: "platform",
     icon: Camera,
