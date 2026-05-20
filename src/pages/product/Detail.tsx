@@ -80,6 +80,8 @@ export default function ProductDetail() {
           <div className="flex items-center gap-2 text-[12.5px] text-slate-500 mb-8">
             <Link to="/" className="hover:text-slate-900 transition-colors">Trang chủ</Link>
             <span>›</span>
+            <Link to="/products" className="hover:text-slate-900 transition-colors">Products</Link>
+            <span>›</span>
             <span>{groupMeta.title}</span>
             <span>›</span>
             <span className="text-slate-900 font-medium">{product.name}</span>

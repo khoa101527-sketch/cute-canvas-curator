@@ -217,6 +217,7 @@ export default function Header() {
                 className="flex items-center gap-1 py-2 transition-colors relative group"
                 style={{ color: isActive ? textHoverColor : "inherit", fontWeight: isActive ? 600 : undefined }}
                 onClick={() => {
+                  if (isProduct) { navigate("/products"); setOpenMenu(null); return; }
                   if (itemHref && !hasDropdown) navigate(itemHref);
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = textHoverColor; }}
@@ -248,6 +249,19 @@ export default function Header() {
           onMouseLeave={scheduleClose}
         >
           <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-3.5 border-b border-slate-100">
+              <span className="text-[12.5px] font-medium text-slate-500">
+                {Object.values(PRODUCTS_BY_GROUP).reduce((a, b) => a + b.length, 0)} sản phẩm
+              </span>
+              <button
+                type="button"
+                onClick={() => { navigate("/products"); setOpenMenu(null); }}
+                className="group inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-[#1040A6] hover:gap-2 transition-all"
+              >
+                Xem tất cả
+                <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+              </button>
+            </div>
             <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-7">
               {PRODUCT_GROUP_KEYS.map((key) => (
                 <div key={key}>

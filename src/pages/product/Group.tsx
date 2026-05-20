@@ -32,31 +32,31 @@ const SLUG_THEME: Record<string, ThemeKey> = {
 const THEME_BG: Record<ThemeKey, { bg: string; halo1: string; halo2: string; grid: string }> = {
   red: {
     bg:
-      "radial-gradient(120% 80% at 100% 0%, rgba(255,90,90,0.22) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(120,20,30,0.35) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#1a0a10 0%, #2a0c14 45%, #3a1118 100%)",
-    halo1: "radial-gradient(closest-side, rgba(255,110,110,0.55), transparent 70%)",
-    halo2: "radial-gradient(closest-side, rgba(255,170,150,0.28), transparent 70%)",
-    grid: "rgba(255,180,180,0.07)",
+      "radial-gradient(120% 80% at 100% 0%, rgba(120,160,255,0.18) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(255,110,130,0.22) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#0a1226 0%, #0f1a36 45%, #14224a 100%)",
+    halo1: "radial-gradient(closest-side, rgba(255,120,140,0.45), transparent 70%)",
+    halo2: "radial-gradient(closest-side, rgba(140,180,255,0.32), transparent 70%)",
+    grid: "rgba(180,200,255,0.07)",
   },
   orange: {
     bg:
-      "radial-gradient(120% 80% at 100% 0%, rgba(255,170,90,0.22) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(140,70,15,0.4) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#1a0e08 0%, #2a160a 45%, #3a1f0e 100%)",
-    halo1: "radial-gradient(closest-side, rgba(255,170,90,0.55), transparent 70%)",
-    halo2: "radial-gradient(closest-side, rgba(255,210,150,0.28), transparent 70%)",
-    grid: "rgba(255,200,160,0.07)",
+      "radial-gradient(120% 80% at 100% 0%, rgba(120,160,255,0.18) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(255,170,90,0.22) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#0a1226 0%, #0f1a36 45%, #142346 100%)",
+    halo1: "radial-gradient(closest-side, rgba(255,180,110,0.45), transparent 70%)",
+    halo2: "radial-gradient(closest-side, rgba(140,180,255,0.30), transparent 70%)",
+    grid: "rgba(200,210,255,0.07)",
   },
   blue: {
     bg:
       "radial-gradient(120% 80% at 100% 0%, rgba(110,170,255,0.22) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(20,40,120,0.45) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#070b1f 0%, #0d1330 45%, #131a48 100%)",
-    halo1: "radial-gradient(closest-side, rgba(80,150,255,0.55), transparent 70%)",
+    halo1: "radial-gradient(closest-side, rgba(80,150,255,0.50), transparent 70%)",
     halo2: "radial-gradient(closest-side, rgba(150,200,255,0.28), transparent 70%)",
     grid: "rgba(170,205,255,0.08)",
   },
   teal: {
     bg:
-      "radial-gradient(120% 80% at 100% 0%, rgba(80,200,200,0.22) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(15,70,90,0.45) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#06141a 0%, #0a1d28 45%, #0f2a38 100%)",
-    halo1: "radial-gradient(closest-side, rgba(90,210,205,0.5), transparent 70%)",
-    halo2: "radial-gradient(closest-side, rgba(150,230,220,0.25), transparent 70%)",
-    grid: "rgba(180,235,225,0.08)",
+      "radial-gradient(120% 80% at 100% 0%, rgba(80,200,200,0.20) 0%, rgba(0,0,0,0) 55%), radial-gradient(90% 70% at 0% 100%, rgba(15,70,120,0.45) 0%, rgba(0,0,0,0) 60%), linear-gradient(135deg,#06121f 0%, #0a1b2c 45%, #0f2740 100%)",
+    halo1: "radial-gradient(closest-side, rgba(90,210,205,0.45), transparent 70%)",
+    halo2: "radial-gradient(closest-side, rgba(150,200,255,0.25), transparent 70%)",
+    grid: "rgba(180,225,235,0.08)",
   },
 };
 
@@ -97,7 +97,7 @@ export default function ProductGroup() {
               Trang chủ
             </Link>
             <span>›</span>
-            <span className="text-slate-500">Products</span>
+            <Link to="/products" className="hover:text-[#1040A6] transition-colors">Products</Link>
             <span>›</span>
             <span className="text-slate-700 font-medium">{meta.title}</span>
           </div>
