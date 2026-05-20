@@ -308,7 +308,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "vietcare",
     name: "VietCare",
-    short: "Quản lý bệnh viện – quản lý toàn diện, chăm sóc tối ưu.",
+    short: "Quản lý Bệnh viện – Quản lý toàn diện, chăm sóc tối ưu.",
     tagline: "Phần mềm quản lý bệnh viện toàn diện",
     group: "management",
     icon: Stethoscope,
