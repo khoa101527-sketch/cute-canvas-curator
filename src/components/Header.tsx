@@ -240,6 +240,89 @@ export default function Header() {
         })}
       </nav>
 
+      {/* Mega dropdown panels — span full header width */}
+      {openMenu === "Product" && (
+        <div
+          className="hidden md:block absolute left-0 right-0 top-full pt-3 z-50"
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
+              <div className="text-[13px] font-semibold text-slate-500">
+                <span className="text-[#1040A6] font-bold">{PRODUCTS.length}</span> sản phẩm
+              </div>
+              <button
+                type="button"
+                onClick={() => { navigate("/products/platform"); setOpenMenu(null); }}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
+              >
+                Xem tất cả <ArrowRight size={14} />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+              {PRODUCT_GROUP_KEYS.map((key) => (
+                <div key={key}>
+                  <div className="text-[11px] tracking-[0.18em] uppercase font-bold text-[#1040A6] mb-3">
+                    {PRODUCT_GROUP_META[key].title}
+                  </div>
+                  <ul className="space-y-1">
+                    {PRODUCTS_BY_GROUP[key].map((p) => (
+                      <li key={p.slug}>
+                        <button
+                          type="button"
+                          onClick={() => { navigate(`/product/${p.slug}`); setOpenMenu(null); }}
+                          className="block w-full text-left px-3 py-2 rounded-xl hover:bg-blue-50/70 transition-colors group"
+                        >
+                          <div className="text-[14px] font-semibold text-slate-900 group-hover:text-[#1040A6]">{p.name}</div>
+                          <ClampedSubtitle text={p.short} />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {openMenu === "About" && (
+        <div
+          className="hidden md:block absolute left-0 right-0 top-full pt-3 z-50"
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
+              <div className="text-[13px] font-semibold text-slate-500">
+                <span className="text-[#1040A6] font-bold">{NAV_ITEMS.find(n => n.id === "about")?.dropdown?.length ?? 0}</span> mục
+              </div>
+              <button
+                type="button"
+                onClick={() => { navigate("/about"); setOpenMenu(null); }}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
+              >
+                Xem tất cả <ArrowRight size={14} />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+              {(NAV_ITEMS.find(n => n.id === "about")?.dropdown ?? []).map((d) => (
+                <button
+                  key={d.label}
+                  type="button"
+                  onClick={() => { if (d.href.startsWith("/")) navigate(d.href); setOpenMenu(null); }}
+                  className="text-left px-3 py-2.5 rounded-xl hover:bg-blue-50/70 transition-colors group"
+                >
+                  <div className="text-[14px] font-semibold text-slate-900 group-hover:text-[#1040A6]">{d.label}</div>
+                  {d.subtitle && <ClampedSubtitle text={d.subtitle} />}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Right cluster: language switcher + mobile hamburger */}
       <div className="flex items-center gap-2 shrink-0">
         {/* Language switcher (UI only) */}
