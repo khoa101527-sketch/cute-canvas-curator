@@ -139,7 +139,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aicanteen",
     name: "AICanteen",
-    short: "Bếp thông minh – vận hành gọn, tối ưu suất ăn doanh nghiệp.",
+    short: "Bếp thông minh – Vận hành gọn, tối ưu từng suất ăn.",
     tagline: "Số hoá toàn diện nhà ăn doanh nghiệp",
     group: "platform",
     icon: Utensils,
