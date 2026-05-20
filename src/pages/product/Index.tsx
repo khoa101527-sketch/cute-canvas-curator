@@ -90,17 +90,14 @@ export default function ProductsLanding() {
                       to={`/product/${p.slug}`}
                       aria-label={p.name}
                       title={p.name}
-                      className="group flex flex-col items-center justify-center gap-2 p-4 h-[124px] rounded-2xl bg-white border border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_18px_40px_-18px_rgba(16,64,166,0.28)]"
+                      className="group flex items-center justify-center p-4 h-[124px] rounded-2xl bg-white border border-slate-200 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_18px_40px_-18px_rgba(16,64,166,0.28)]"
                     >
                       <img
                         src={getProductLogo(p.slug)}
                         alt={p.name}
                         loading="lazy"
-                        className="max-w-[78%] max-h-[60px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        className="max-w-[80%] max-h-[72px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                       />
-                      <span className="text-[12px] font-medium text-slate-600 group-hover:text-[#1040A6] transition-colors">
-                        {p.name}
-                      </span>
                     </Link>
                   ))}
                 </div>
