@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, Sparkles, Calendar, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Calendar, MessageCircle, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from "@/data/products";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
