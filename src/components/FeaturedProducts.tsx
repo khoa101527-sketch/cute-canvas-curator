@@ -3,7 +3,22 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { PRODUCTS, getProductLogo } from "@/data/products";
 
-const FEATURED = ["lumina", "aiautomate", "aicamera", "ailoyalty", "vietcare", "1shop", "dealer-pro", "oraspa", "aiacademy"]
+import banner1shop from "@/assets/posters/1shop.png";
+import bannerVietcare from "@/assets/posters/vietcare.png";
+import bannerDealerPro from "@/assets/posters/dealerpro.png";
+import bannerAICamera from "@/assets/posters/aicamera.png";
+import bannerAILoyalty from "@/assets/posters/ailoyalty.png";
+
+const BANNERS: Record<string, string> = {
+  "1shop": banner1shop,
+  vietcare: bannerVietcare,
+  "dealer-pro": bannerDealerPro,
+  aicamera: bannerAICamera,
+  ailoyalty: bannerAILoyalty,
+};
+
+// Show only the first 5 featured products — those that have banners available.
+const FEATURED = ["1shop", "vietcare", "dealer-pro", "aicamera", "ailoyalty"]
   .map((s) => PRODUCTS.find((p) => p.slug === s))
   .filter((x): x is NonNullable<typeof x> => !!x);
 
@@ -15,7 +30,6 @@ export default function FeaturedProducts() {
   const [paused, setPaused] = useState(false);
   const [hoverSlug, setHoverSlug] = useState<string | null>(null);
 
-  // Loop infinite: extend list
   const loop = [...FEATURED, ...FEATURED.slice(0, VISIBLE)];
 
   useEffect(() => {
@@ -24,7 +38,6 @@ export default function FeaturedProducts() {
     return () => window.clearInterval(t);
   }, [paused]);
 
-  // When we hit the cloned tail, snap back without animation
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [enableTransition, setEnableTransition] = useState(true);
   useEffect(() => {
@@ -47,7 +60,7 @@ export default function FeaturedProducts() {
         }}
       />
       <div className="relative max-w-[1280px] mx-auto">
-        <div className="flex items-end justify-between gap-6 mb-10">
+        <div className="mb-10">
           <h2
             className="font-bold tracking-[-0.025em] leading-[1.08] text-slate-900"
             style={{ fontSize: "clamp(34px,4.2vw,52px)" }}
@@ -60,12 +73,6 @@ export default function FeaturedProducts() {
             </span>{" "}
             nổi bật
           </h2>
-          <Link
-            to="/products/platform"
-            className="hidden md:inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-[#1040A6] hover:underline"
-          >
-            Xem tất cả <ArrowRight size={14} />
-          </Link>
         </div>
 
         <div
@@ -89,7 +96,7 @@ export default function FeaturedProducts() {
               >
                 <Link
                   to={`/product/${p.slug}`}
-                  className="group relative block rounded-2xl bg-white border border-slate-200 p-6 h-full transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_22px_50px_-20px_rgba(16,64,166,0.28)]"
+                  className="group relative flex flex-col h-full rounded-2xl bg-white border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_22px_50px_-20px_rgba(16,64,166,0.28)]"
                   onMouseEnter={() => setHoverSlug(`${p.slug}-${i}`)}
                   onMouseLeave={() => setHoverSlug(null)}
                 >
@@ -114,6 +121,20 @@ export default function FeaturedProducts() {
                     </div>
                   </div>
 
+                  {/* Banner image */}
+                  {BANNERS[p.slug] && (
+                    <div
+                      className="mt-5 w-full rounded-xl overflow-hidden bg-slate-50 border border-slate-100"
+                      style={{ aspectRatio: "16 / 9" }}
+                    >
+                      <img
+                        src={BANNERS[p.slug]}
+                        alt={`${p.name} banner`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  )}
+
                   <p
                     className="mt-4 text-[13.5px] text-slate-600 leading-[1.6] overflow-hidden"
                     style={{
@@ -126,7 +147,6 @@ export default function FeaturedProducts() {
                     {p.short}
                   </p>
 
-                  {/* Hover popover with full content */}
                   {hoverSlug === `${p.slug}-${i}` && (
                     <div
                       className="absolute left-4 right-4 top-full mt-2 z-20 rounded-xl bg-slate-900 text-white text-[12.5px] leading-[1.55] p-3.5 shadow-2xl"
