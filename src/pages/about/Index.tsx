@@ -263,7 +263,7 @@ export default function AboutUs() {
                     </div>
 
                     {/* Desktop alternating layout */}
-                    <div className="hidden lg:grid grid-cols-2 gap-12 items-start">
+                    <div className="hidden lg:grid grid-cols-2 gap-12 items-center">
                       {cardOnLeft ? (
                         <>
                           {/* card LEFT */}
@@ -277,8 +277,15 @@ export default function AboutUs() {
                             </div>
                           </div>
                           {/* year RIGHT */}
-                          <div className="pl-12 pt-5">
-                            <div className="text-[14px] tracking-[0.18em] uppercase font-bold" style={{ color: "#1040A6" }}>
+                          <div className="pl-12">
+                            <div
+                              className="font-bold leading-none bg-clip-text text-transparent"
+                              style={{
+                                fontSize: "clamp(34px,3.4vw,46px)",
+                                letterSpacing: "-0.01em",
+                                backgroundImage: "linear-gradient(135deg,#1040A6 0%,#1B8FD2 60%,#5ec0ff 100%)",
+                              }}
+                            >
                               {m.year}
                             </div>
                           </div>
@@ -286,8 +293,15 @@ export default function AboutUs() {
                       ) : (
                         <>
                           {/* year LEFT */}
-                          <div className="pr-12 pt-5 text-right">
-                            <div className="text-[14px] tracking-[0.18em] uppercase font-bold" style={{ color: "#1040A6" }}>
+                          <div className="pr-12 text-right">
+                            <div
+                              className="font-bold leading-none bg-clip-text text-transparent inline-block"
+                              style={{
+                                fontSize: "clamp(34px,3.4vw,46px)",
+                                letterSpacing: "-0.01em",
+                                backgroundImage: "linear-gradient(135deg,#1040A6 0%,#1B8FD2 60%,#5ec0ff 100%)",
+                              }}
+                            >
                               {m.year}
                             </div>
                           </div>
@@ -304,6 +318,7 @@ export default function AboutUs() {
                         </>
                       )}
                     </div>
+
                   </li>
                 );
               })}
