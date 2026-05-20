@@ -195,7 +195,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "demand-planning",
     name: "Demand Planning",
-    short: "S&OP tự động – dự báo nhu cầu chính xác.",
+    short: "S&OP tự động – Dự báo nhu cầu chính xác.",
     tagline: "Nền tảng S&OP tích hợp – Từ dữ liệu rời rạc đến kế hoạch chính xác",
     group: "platform",
     icon: LineChart,
