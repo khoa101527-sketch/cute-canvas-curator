@@ -168,7 +168,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "ailoyalty",
     name: "AILoyalty",
-    short: "Hiểu để chăm sóc khách hàng – cá nhân hoá từng trải nghiệm.",
+    short: "Hiểu để chăm sóc khách hàng – Cá nhân hóa từng trải nghiệm.",
     tagline: "Nền tảng chăm sóc khách hàng thân thiết",
     group: "platform",
     icon: Heart,
