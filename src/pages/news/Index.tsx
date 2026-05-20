@@ -33,13 +33,7 @@ export default function NewsPage() {
               "radial-gradient(1px 1px at 32% 78%, rgba(255,255,255,0.4) 50%, transparent 60%)",
           }}
         />
-        <div className="relative max-w-[1100px] mx-auto text-center">
-          <span className="inline-flex items-center gap-2 text-[12px] tracking-[0.24em] uppercase font-semibold text-white/75">
-            <span className="w-7 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#1B8FD2,#5ec0ff)" }} />
-            News
-            <span className="w-7 h-[2px] rounded-full" style={{ background: "linear-gradient(90deg,#5ec0ff,#7a5cff)" }} />
-          </span>
-          <h1 className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
+        <div className="relative max-w-[1100px] mx-auto text-center">          <h1 className="font-bold tracking-[-0.025em] leading-[1.06] text-white" style={{ fontSize: "clamp(40px,5.4vw,72px)" }}>
             Insight &amp; xu hướng công nghệ
           </h1>
           <p className="mt-7 mx-auto max-w-[820px] text-[17px] leading-[1.75] text-white/75">
@@ -93,12 +87,7 @@ export default function NewsPage() {
         <section className="relative py-14 px-6 lg:px-8">
           <div className="max-w-[1280px] mx-auto">
             <div className="flex items-end justify-between gap-6 flex-wrap">
-              <div>
-                <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-                  <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-                  Latest Articles
-                </span>
-                <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(28px,3.2vw,40px)" }}>
+              <div>                <h2 className="font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(28px,3.2vw,40px)" }}>
                   Bài viết mới nhất
                 </h2>
               </div>

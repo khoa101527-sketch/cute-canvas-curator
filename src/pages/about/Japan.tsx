@@ -78,12 +78,7 @@ export default function AboutJapan() {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              About AIPOWER Japan
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.12] text-slate-900" style={{ fontSize: "clamp(28px,3.4vw,42px)" }}>
+          <div className="lg:col-span-7">            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.12] text-slate-900" style={{ fontSize: "clamp(28px,3.4vw,42px)" }}>
               Hỗ trợ tăng trưởng cho khách hàng bằng những giải pháp IT tiên tiến
             </h2>
             <p className="mt-5 text-[16px] leading-[1.75] text-slate-600">
@@ -96,13 +91,7 @@ export default function AboutJapan() {
       {/* 3 policy columns */}
       <section className="relative py-20 px-6 lg:px-8" style={{ background: "linear-gradient(180deg,#ffffff 0%, #f4f8ff 100%)" }}>
         <div className="max-w-[1280px] mx-auto">
-          <div className="text-center max-w-[760px] mx-auto">
-            <span className="inline-flex items-center gap-2 text-[12.5px] tracking-[0.2em] uppercase font-semibold" style={{ color: "#1040A6" }}>
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-              Our Policies
-              <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1B8FD2] to-[#5ec0ff]" />
-            </span>
-            <h2 className="mt-3 font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
+          <div className="text-center max-w-[760px] mx-auto">            <h2 className="font-bold tracking-[-0.02em] leading-[1.1] text-slate-900" style={{ fontSize: "clamp(30px,3.6vw,46px)" }}>
               3 chính sách định hướng hoạt động
             </h2>
           </div>

@@ -60,7 +60,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "lumina",
     name: "Lumina",
-    short: "Nền tảng AI cho toàn doanh nghiệp – Lãnh đạo quyết định đúng, nhân viên làm nhanh.",
+    short: "Nền tảng AI cho toàn doanh nghiệp – Lãnh đạo quyết định đúng, nhân viên làm nhanh, AI agents làm tự động.",
     tagline: "One AI Platform for the Entire Enterprise",
     group: "platform",
     icon: Brain,
@@ -85,7 +85,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiautomate",
     name: "AIAutomate",
-    short: "Tự động hoá quy trình – thay thủ công, tăng hiệu suất 24/7.",
+    short: "Tự động hóa quy trình – Thay thủ công, tăng hiệu suất.",
     tagline: "Giải pháp Tự động hoá Quy trình Vận hành Doanh nghiệp",
     group: "platform",
     icon: Bot,
@@ -112,7 +112,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aicamera",
     name: "AICamera",
-    short: "Camera AI – tự động giám sát, cảnh báo tức thì 24/7.",
+    short: "Camera AI – Tự động giám sát, cảnh báo tức thì 24/7.",
     tagline: "Camera AI giám sát & cảnh báo tuân thủ tức thì",
     group: "platform",
     icon: Camera,
@@ -139,7 +139,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aicanteen",
     name: "AICanteen",
-    short: "Bếp thông minh – vận hành gọn, tối ưu suất ăn doanh nghiệp.",
+    short: "Bếp thông minh – Vận hành gọn, tối ưu từng suất ăn.",
     tagline: "Số hoá toàn diện nhà ăn doanh nghiệp",
     group: "platform",
     icon: Utensils,
@@ -168,7 +168,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "ailoyalty",
     name: "AILoyalty",
-    short: "Hiểu để chăm sóc khách hàng – cá nhân hoá từng trải nghiệm.",
+    short: "Hiểu để chăm sóc khách hàng – Cá nhân hóa từng trải nghiệm.",
     tagline: "Nền tảng chăm sóc khách hàng thân thiết",
     group: "platform",
     icon: Heart,
@@ -195,7 +195,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "demand-planning",
     name: "Demand Planning",
-    short: "S&OP tự động – dự báo nhu cầu chính xác.",
+    short: "S&OP tự động – Dự báo nhu cầu chính xác.",
     tagline: "Nền tảng S&OP tích hợp – Từ dữ liệu rời rạc đến kế hoạch chính xác",
     group: "platform",
     icon: LineChart,
@@ -225,7 +225,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiconnect",
     name: "AIConnect",
-    short: "Kết nối hệ thống – hợp nhất dữ liệu, vận hành liền mạch.",
+    short: "Kết nối hệ thống – Hợp nhất dữ liệu, vận hành liền mạch.",
     tagline: "Nền tảng kết nối và tích hợp hệ thống",
     group: "management",
     icon: Network,
@@ -251,7 +251,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "dealer-pro",
     name: "Dealer Pro",
-    short: "Quản lý đại lý ô tô – đồng bộ, chuyên sâu, hiệu quả.",
+    short: "Quản lý đại lý ô tô – Đồng bộ, chuyên sâu, hiệu quả.",
     tagline: "Phần mềm quản lý đại lý ô tô thông minh tích hợp AI",
     group: "management",
     icon: Car,
@@ -278,7 +278,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "oraspa",
     name: "ORASPA",
-    short: "Quản lý Spa & Nha khoa – tinh gọn vận hành, nâng tầm dịch vụ.",
+    short: "Quản lý Spa và Nha khoa – Tinh gọn vận hành, nâng tầm dịch vụ.",
     tagline: "Phần mềm quản lý Spa và Nha khoa thông minh tích hợp AI",
     group: "management",
     icon: Sparkles,
@@ -308,7 +308,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "vietcare",
     name: "VietCare",
-    short: "Quản lý bệnh viện – quản lý toàn diện, chăm sóc tối ưu.",
+    short: "Quản lý Bệnh viện – Quản lý toàn diện, chăm sóc tối ưu.",
     tagline: "Phần mềm quản lý bệnh viện toàn diện",
     group: "management",
     icon: Stethoscope,
@@ -336,7 +336,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "1shop",
     name: "1Shop",
-    short: "Quản lý bán hàng đa kênh – tất cả trong một nền tảng.",
+    short: "Nền tảng thương mại điện tử đa nhà bán hàng – Tích hợp tư vấn, tiếp thị và quản trị trong một nền tảng.",
     tagline: "Phần mềm quản lý bán hàng đa sàn TMĐT",
     group: "management",
     icon: ShoppingBag,
@@ -366,7 +366,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiacademy",
     name: "AIAcademy",
-    short: "Học AI thông minh – lộ trình cá nhân hoá, AI agents hỗ trợ.",
+    short: "Nền tảng micro-learning – Học tập linh hoạt mỗi ngày với AI Agent.",
     tagline: "Nền tảng đào tạo AI thực chiến",
     group: "training",
     icon: GraduationCap,

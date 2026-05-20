@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronDown, Menu, X, Globe, Check, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
-import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, PRODUCTS, type ProductGroupKey } from "@/data/products";
+import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, type ProductGroupKey } from "@/data/products";
 
 const PRODUCT_GROUP_KEYS: ProductGroupKey[] = ["platform", "management", "training"];
 
@@ -248,24 +248,18 @@ export default function Header() {
           onMouseLeave={scheduleClose}
         >
           <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
-            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
-              <div className="text-[13px] font-semibold text-slate-500">
-                <span className="text-[#1040A6] font-bold">{PRODUCTS.length}</span> sản phẩm
-              </div>
-              <button
-                type="button"
-                onClick={() => { navigate("/products/platform"); setOpenMenu(null); }}
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
-              >
-                Xem tất cả <ArrowRight size={14} />
-              </button>
-            </div>
-            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-7">
               {PRODUCT_GROUP_KEYS.map((key) => (
                 <div key={key}>
-                  <div className="text-[11px] tracking-[0.18em] uppercase font-bold text-[#1040A6] mb-3">
-                    {PRODUCT_GROUP_META[key].title}
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => { navigate(`/products/${key}`); setOpenMenu(null); }}
+                    className="group/cta inline-flex items-center gap-1.5 mb-3 px-3 py-1.5 rounded-full text-[11px] tracking-[0.16em] uppercase font-bold text-white transition-all hover:gap-2.5 hover:shadow-[0_10px_24px_-8px_rgba(27,143,210,0.55)]"
+                    style={{ background: "linear-gradient(135deg,#1040A6 0%,#1B8FD2 60%,#34d3a4 100%)" }}
+                  >
+                    <span>{PRODUCT_GROUP_META[key].title}</span>
+                    <ArrowRight size={12} className="transition-transform group-hover/cta:translate-x-0.5" />
+                  </button>
                   <ul className="space-y-1">
                     {PRODUCTS_BY_GROUP[key].map((p) => (
                       <li key={p.slug}>
@@ -275,7 +269,7 @@ export default function Header() {
                           className="block w-full text-left px-3 py-2 rounded-xl hover:bg-blue-50/70 transition-colors group"
                         >
                           <div className="text-[14px] font-semibold text-slate-900 group-hover:text-[#1040A6]">{p.name}</div>
-                          <ClampedSubtitle text={p.short} />
+                          <span className="block mt-0.5 text-[12.5px] leading-[1.45] text-slate-500">{p.short}</span>
                         </button>
                       </li>
                     ))}
@@ -294,19 +288,7 @@ export default function Header() {
           onMouseLeave={scheduleClose}
         >
           <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
-            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
-              <div className="text-[13px] font-semibold text-slate-500">
-                <span className="text-[#1040A6] font-bold">{NAV_ITEMS.find(n => n.id === "about")?.dropdown?.length ?? 0}</span> mục
-              </div>
-              <button
-                type="button"
-                onClick={() => { navigate("/about"); setOpenMenu(null); }}
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
-              >
-                Xem tất cả <ArrowRight size={14} />
-              </button>
-            </div>
-            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-7">
               {(NAV_ITEMS.find(n => n.id === "about")?.dropdown ?? []).map((d) => (
                 <button
                   key={d.label}
@@ -322,6 +304,7 @@ export default function Header() {
           </div>
         </div>
       )}
+
 
       {/* Right cluster: language switcher + mobile hamburger */}
       <div className="flex items-center gap-2 shrink-0">

@@ -42,22 +42,8 @@ export default function AboutLayout({
           }}
         />
 
-        <div className="relative max-w-[1100px] mx-auto text-center">
-          <span
-            className="inline-flex items-center gap-2 text-[12px] tracking-[0.24em] uppercase font-semibold text-white/75"
-          >
-            <span
-              className="w-7 h-[2px] rounded-full"
-              style={{ background: "linear-gradient(90deg,#1B8FD2,#5ec0ff)" }}
-            />
-            {eyebrow}
-            <span
-              className="w-7 h-[2px] rounded-full"
-              style={{ background: "linear-gradient(90deg,#5ec0ff,#7a5cff)" }}
-            />
-          </span>
-          <h1
-            className="mt-5 font-bold tracking-[-0.025em] leading-[1.06] text-white"
+        <div className="relative max-w-[1100px] mx-auto text-center">          <h1
+            className="font-bold tracking-[-0.025em] leading-[1.06] text-white"
             style={{ fontSize: "clamp(40px,5.4vw,72px)" }}
           >
             {title}

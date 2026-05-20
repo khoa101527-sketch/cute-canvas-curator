@@ -103,15 +103,7 @@ export default function ProductGroup() {
           </div>
 
           <div className="flex items-end justify-between gap-6 mb-7">
-            <div>
-              <span
-                className="inline-flex items-center gap-2 text-[11.5px] tracking-[0.2em] uppercase font-semibold"
-                style={{ color: "#1040A6" }}
-              >
-                <span className="w-6 h-[2px] rounded-full bg-gradient-to-r from-[#1040A6] to-[#1B8FD2]" />
-                Sản phẩm trong nhóm
-              </span>
-              <h2
+            <div>              <h2
                 className="mt-2 font-bold tracking-[-0.02em] leading-[1.15]"
                 style={{ fontSize: "clamp(26px,2.8vw,36px)", color: "#0b1736" }}
               >
