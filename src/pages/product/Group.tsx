@@ -97,7 +97,7 @@ export default function ProductGroup() {
               Trang chủ
             </Link>
             <span>›</span>
-            <span className="text-slate-500">Products</span>
+            <Link to="/products" className="hover:text-[#1040A6] transition-colors">Products</Link>
             <span>›</span>
             <span className="text-slate-700 font-medium">{meta.title}</span>
           </div>
