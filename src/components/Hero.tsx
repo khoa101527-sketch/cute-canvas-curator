@@ -264,7 +264,7 @@ export default function Hero() {
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(100deg,#7cc6ff 0%,#1B8FD2 40%,#1040A6 100%)",
+                  "linear-gradient(90deg,#1040A6 0%,#1B8FD2 50%,#7a5cff 100%)",
               }}
             >
               AI Power
