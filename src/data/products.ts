@@ -225,7 +225,7 @@ export const PRODUCTS: ProductItem[] = [
   {
     slug: "aiconnect",
     name: "AIConnect",
-    short: "Kết nối hệ thống – hợp nhất dữ liệu, vận hành liền mạch.",
+    short: "Kết nối hệ thống – Hợp nhất dữ liệu, vận hành liền mạch.",
     tagline: "Nền tảng kết nối và tích hợp hệ thống",
     group: "management",
     icon: Network,
