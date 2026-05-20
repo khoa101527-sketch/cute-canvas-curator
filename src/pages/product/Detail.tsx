@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, Sparkles, Calendar, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Calendar, MessageCircle, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { findProductBySlug, PRODUCTS, PRODUCT_GROUP_META, getProductLogo } from "@/data/products";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,6 +24,15 @@ const PRODUCT_BANNERS: Record<string, string> = {
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const product = slug ? findProductBySlug(slug) : undefined;
+  const [lightbox, setLightbox] = useState(false);
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [lightbox]);
 
   if (!product) {
     return (
@@ -75,7 +85,7 @@ export default function ProductDetail() {
             <span className="text-slate-900 font-medium">{product.name}</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.25fr] gap-12 lg:gap-14 items-center">
             {/* LEFT */}
             <div>
               <div className="h-16 md:h-20 mb-6 flex items-center">
@@ -111,12 +121,15 @@ export default function ProductDetail() {
             {/* RIGHT — floating composition */}
             <div className="relative">
               {PRODUCT_BANNERS[product.slug] ? (
-                <div
-                  className="relative mx-auto rounded-[28px] overflow-hidden bg-white border border-slate-100"
+                <button
+                  type="button"
+                  onClick={() => setLightbox(true)}
+                  className="relative block w-full rounded-[28px] overflow-hidden bg-white border border-slate-100 cursor-zoom-in transition-transform hover:scale-[1.01]"
                   style={{
                     boxShadow: "0 40px 90px -30px rgba(16,64,166,0.45)",
                     aspectRatio: "16/9",
                   }}
+                  aria-label={`Xem ảnh lớn ${product.name}`}
                 >
                   <img
                     src={PRODUCT_BANNERS[product.slug]}
@@ -124,7 +137,7 @@ export default function ProductDetail() {
                     className="w-full h-full object-contain"
                     draggable={false}
                   />
-                </div>
+                </button>
               ) : (
                 <div
                   className="relative mx-auto rounded-[28px] p-8 overflow-hidden"
@@ -343,6 +356,32 @@ export default function ProductDetail() {
       </section>
 
       <Footer />
+
+      {/* Lightbox */}
+      {lightbox && PRODUCT_BANNERS[product.slug] && (
+        <div
+          className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-8 animate-[fade-in_180ms_ease-out]"
+          style={{ background: "rgba(0,0,0,0.78)" }}
+          onClick={() => setLightbox(false)}
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLightbox(false); }}
+            aria-label="Đóng"
+            className="absolute top-5 right-5 w-11 h-11 grid place-items-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={PRODUCT_BANNERS[product.slug]}
+            alt={product.name}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-[95vw] max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+            style={{ animation: "scale-in 220ms ease-out" }}
+            draggable={false}
+          />
+        </div>
+      )}
     </div>
   );
 }

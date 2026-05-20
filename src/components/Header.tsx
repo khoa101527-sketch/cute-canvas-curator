@@ -1,14 +1,38 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ChevronDown, Menu, X, Globe, Check } from "lucide-react";
+import { ChevronDown, Menu, X, Globe, Check, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NAV_ITEMS } from "@/data";
-import { PRODUCT_GROUP_META, type ProductGroupKey } from "@/data/products";
+import { PRODUCT_GROUP_META, PRODUCTS_BY_GROUP, PRODUCTS, type ProductGroupKey } from "@/data/products";
 
-const PRODUCT_DROPDOWN: { key: ProductGroupKey; label: string }[] = [
-  { key: "platform", label: "Nền tảng & Vận hành thông minh" },
-  { key: "management", label: "Quản trị" },
-  { key: "training", label: "Đào tạo" },
-];
+const PRODUCT_GROUP_KEYS: ProductGroupKey[] = ["platform", "management", "training"];
+
+// Subtitle clamped to 2 lines; on hover shows full text only when truncated.
+function ClampedSubtitle({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const [truncated, setTruncated] = useState(false);
+  const [hover, setHover] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    setTruncated(el.scrollHeight - el.clientHeight > 1);
+  }, [text]);
+  return (
+    <span className="relative block" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <span
+        ref={ref}
+        className="block text-[12.5px] leading-[1.45] text-slate-500 overflow-hidden"
+        style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}
+      >
+        {text}
+      </span>
+      {truncated && hover && (
+        <span className="absolute left-0 top-full mt-1 z-[60] max-w-[280px] rounded-lg bg-slate-900 text-white text-[12px] leading-[1.5] p-2.5 shadow-xl whitespace-normal">
+          {text}
+        </span>
+      )}
+    </span>
+  );
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,6 +40,17 @@ export default function Header() {
   const [langOpen, setLangOpen] = useState(false);
   const [lang, setLang] = useState<"vi" | "ja" | "en">("vi");
   const langRef = useRef<HTMLDivElement | null>(null);
+  const closeTimer = useRef<number | null>(null);
+  const scheduleClose = useCallback(() => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setOpenMenu(null), 140);
+  }, []);
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
@@ -174,25 +209,18 @@ export default function Header() {
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() => hasDropdown && setOpenMenu(item.label)}
-              onMouseLeave={() => setOpenMenu(null)}
+              onMouseEnter={() => { if (hasDropdown) { cancelClose(); setOpenMenu(item.label); } }}
+              onMouseLeave={() => { if (hasDropdown) scheduleClose(); }}
             >
               <button
                 type="button"
-                // Plain hover state only — no scroll/jump behavior for non-dropdown items.
                 className="flex items-center gap-1 py-2 transition-colors relative group"
                 style={{ color: isActive ? textHoverColor : "inherit", fontWeight: isActive ? 600 : undefined }}
                 onClick={() => {
-                  if (itemHref && !hasDropdown) {
-                    navigate(itemHref);
-                  }
+                  if (itemHref && !hasDropdown) navigate(itemHref);
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = textHoverColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isActive ? textHoverColor : "inherit";
-                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = textHoverColor; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = isActive ? textHoverColor : "inherit"; }}
               >
                 {item.label}
                 {hasDropdown && (
@@ -207,53 +235,93 @@ export default function Header() {
                   style={{ background: "linear-gradient(90deg,#1040A6,#1B8FD2)" }}
                 />
               </button>
-
-              {/* About dropdown */}
-              {item.dropdown && openMenu === item.label && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[240px] z-50">
-                  <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden py-2">
-                    {item.dropdown.map((d) => (
-                      <button
-                        type="button"
-                        key={d.label}
-                        onClick={() => {
-                          if (d.href && d.href.startsWith("/")) {
-                            navigate(d.href);
-                          }
-                          setOpenMenu(null);
-                        }}
-                        className="block w-full text-left px-5 py-2.5 text-[14px] text-slate-700 font-medium hover:bg-blue-50/80 hover:text-[#1040A6] transition-colors"
-                      >
-                        {d.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Product dropdown — same style as About */}
-              {isProduct && openMenu === item.label && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[300px] z-50">
-                  <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_20px_50px_-10px_rgba(15,30,80,0.25)] overflow-hidden py-2">
-                    {PRODUCT_DROPDOWN.map((g) => (
-                      <button
-                        key={g.key}
-                        onClick={() => {
-                          navigate(`/products/${g.key}`);
-                          setOpenMenu(null);
-                        }}
-                        className="block w-full text-left px-5 py-2.5 text-[14px] text-slate-700 font-medium hover:bg-blue-50/80 hover:text-[#1040A6] transition-colors"
-                      >
-                        {PRODUCT_GROUP_META[g.key].title}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           );
         })}
       </nav>
+
+      {/* Mega dropdown panels — span full header width */}
+      {openMenu === "Product" && (
+        <div
+          className="hidden md:block absolute left-0 right-0 top-full pt-3 z-50"
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
+              <div className="text-[13px] font-semibold text-slate-500">
+                <span className="text-[#1040A6] font-bold">{PRODUCTS.length}</span> sản phẩm
+              </div>
+              <button
+                type="button"
+                onClick={() => { navigate("/products/platform"); setOpenMenu(null); }}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
+              >
+                Xem tất cả <ArrowRight size={14} />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+              {PRODUCT_GROUP_KEYS.map((key) => (
+                <div key={key}>
+                  <div className="text-[11px] tracking-[0.18em] uppercase font-bold text-[#1040A6] mb-3">
+                    {PRODUCT_GROUP_META[key].title}
+                  </div>
+                  <ul className="space-y-1">
+                    {PRODUCTS_BY_GROUP[key].map((p) => (
+                      <li key={p.slug}>
+                        <button
+                          type="button"
+                          onClick={() => { navigate(`/product/${p.slug}`); setOpenMenu(null); }}
+                          className="block w-full text-left px-3 py-2 rounded-xl hover:bg-blue-50/70 transition-colors group"
+                        >
+                          <div className="text-[14px] font-semibold text-slate-900 group-hover:text-[#1040A6]">{p.name}</div>
+                          <ClampedSubtitle text={p.short} />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {openMenu === "About" && (
+        <div
+          className="hidden md:block absolute left-0 right-0 top-full pt-3 z-50"
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+        >
+          <div className="rounded-3xl bg-white/98 backdrop-blur-xl border border-black/5 shadow-[0_30px_60px_-15px_rgba(15,30,80,0.28)] overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-4 border-b border-slate-100">
+              <div className="text-[13px] font-semibold text-slate-500">
+                <span className="text-[#1040A6] font-bold">{NAV_ITEMS.find(n => n.id === "about")?.dropdown?.length ?? 0}</span> mục
+              </div>
+              <button
+                type="button"
+                onClick={() => { navigate("/about"); setOpenMenu(null); }}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1040A6] hover:gap-2.5 transition-all"
+              >
+                Xem tất cả <ArrowRight size={14} />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-x-6 gap-y-2 px-7 py-6">
+              {(NAV_ITEMS.find(n => n.id === "about")?.dropdown ?? []).map((d) => (
+                <button
+                  key={d.label}
+                  type="button"
+                  onClick={() => { if (d.href.startsWith("/")) navigate(d.href); setOpenMenu(null); }}
+                  className="text-left px-3 py-2.5 rounded-xl hover:bg-blue-50/70 transition-colors group"
+                >
+                  <div className="text-[14px] font-semibold text-slate-900 group-hover:text-[#1040A6]">{d.label}</div>
+                  {d.subtitle && <ClampedSubtitle text={d.subtitle} />}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Right cluster: language switcher + mobile hamburger */}
       <div className="flex items-center gap-2 shrink-0">
@@ -336,7 +404,7 @@ export default function Header() {
                   </button>
                   {hasDropdown && subOpen && (
                     <div className="bg-slate-50/60 pb-2">
-                      {(isProduct ? PRODUCT_DROPDOWN.map((g) => ({ label: PRODUCT_GROUP_META[g.key].title, href: `/products/${g.key}` })) : (item.dropdown ?? [])).map((d) => (
+                      {(isProduct ? PRODUCT_GROUP_KEYS.map((key) => ({ label: PRODUCT_GROUP_META[key].title, href: `/products/${key}` })) : (item.dropdown ?? [])).map((d) => (
                         <button
                           key={d.label}
                           type="button"
